@@ -20,7 +20,6 @@ public class PlayerSpawnerBehaviour : MonoBehaviour
             Debug.LogWarning("Player Prefab is not assigned!");
             return;
         }
-
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
     }
 }

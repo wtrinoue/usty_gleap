@@ -33,7 +33,7 @@ public class Emitter : MonoBehaviour
             return;
         }
         int count = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        if( count <= limitRemainingEnemies)
+        if(count <= limitRemainingEnemies)
         {
             Instantiate(waves[currentWave]);
             currentWave += 1;

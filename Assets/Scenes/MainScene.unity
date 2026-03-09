@@ -1332,6 +1332,10 @@ PrefabInstance:
       propertyPath: 'waves.Array.data[4]'
       value: 
       objectReference: {fileID: 8733485613607535618, guid: 9aa4bbfa7c534634c8868bcc64066bfc, type: 3}
+    - target: {fileID: 8210177318117711213, guid: 66bab930ee6d03e49a4d56c6cde7a306, type: 3}
+      propertyPath: limitRemainingEnemies
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
