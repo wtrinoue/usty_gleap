@@ -81,10 +81,8 @@ public class PlayerAction : MonoBehaviour
             return;
         }
         // 武器がなければ処理しない
-        if (weaponCoreList == null || weaponCoreList.Count == 0)
-        {
-            weaponCoreList = weaponCoreHolder.GetWeaponCoreList();
-        }
+        weaponCoreList ??= weaponCoreHolder.GetWeaponCoreList();
+        if(weaponCoreList.Count == 0) return;
         Debug.Log("クリックが動作します");
         // マウス座標をスクリーン空間で取得
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
