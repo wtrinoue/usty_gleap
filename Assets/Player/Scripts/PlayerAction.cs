@@ -14,6 +14,7 @@ public class PlayerAction : MonoBehaviour
     private InputAction scrollAction;
     private InputAction spaceAction;
     private bool isDestroyed = false;
+    private bool isInitialized = false;
     void Start()
     {
         weaponCoreHolder = gameObject.GetComponent<WeaponCoreHolder>();
@@ -51,6 +52,7 @@ public class PlayerAction : MonoBehaviour
         fireAction.Enable();
         scrollAction.Enable();
         spaceAction.Enable();
+        isInitialized = true;
     }
     void OnDisable()
     {
@@ -66,6 +68,7 @@ public class PlayerAction : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
+        if(!isInitialized) return;
         if (isDestroyed)
         {
             Debug.Log("破壊されています");
@@ -105,6 +108,7 @@ public class PlayerAction : MonoBehaviour
 
     public void OnScroll(InputAction.CallbackContext context)
     {
+        if(!isInitialized) return;
         if (isDestroyed)
         {
             Debug.Log("破壊されています");
@@ -136,6 +140,7 @@ public class PlayerAction : MonoBehaviour
 
     public void OnSpace(InputAction.CallbackContext context)
     {
+        if(!isInitialized) return;
         Debug.Log($"graveHolder: {graveHolder}, graves: {graves}");
         if (isDestroyed)
         {

@@ -76,6 +76,7 @@ public class EnemyFollow : MonoBehaviour
 
   public void CheckHpAndHurt()
   {
+    if(isDead) return;
     Debug.Log(statusManager.BaseStatus.CurrentHP);
     if(statusManager.BaseStatus.CurrentHP < pastHp)
     {
