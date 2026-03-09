@@ -34,6 +34,7 @@ public class EnemyFollow : MonoBehaviour
   public void Move()
   {
     if(!isMove) return;
+    if(isDead) return;
     speed = statusManager.GetSpeed();
     if (player == null){
       animation.Idle();
@@ -94,16 +95,13 @@ public class EnemyFollow : MonoBehaviour
 
   void OnCollisionEnter2D(Collision2D collision)
   {
-    if(PlayerManager.Instance == null || PlayerManager.Instance.CurrentPlayer == null)
-    {
-      player = PlayerManager.Instance.CurrentPlayer;
-      return;
-    }
+    if(!collision.gameObject.CompareTag("Player"))
+        return;
+
+    if(collision.gameObject == null)
+        return;
+
     Debug.Log("ぶつかりました！");
-    //プレイヤーとぶつかったら
-    if (collision.gameObject == player.gameObject)
-    {
-      Attack(collision.gameObject);
-    }
+    Attack(collision.gameObject);
   }
 }
