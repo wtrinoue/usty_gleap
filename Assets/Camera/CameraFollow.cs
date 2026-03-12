@@ -2,32 +2,39 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-  public Transform player; //playerの位置
-  //public float smoothspeed = 5f; //カメラ追従の滑らかさ(カメラを滑らかに追従したい場合に必要)
+    private Transform player;
 
-  //playerの動きに遅れて追従させる場合
-  /*
-  void LateUpdate()
-  {
-    if (player == null){
-      return;
+    [SerializeField] private float followSpeed = 5f;
+
+    void Update()
+    {
+        // playerが未設定または再生成された場合
+        if (player == null)
+        {
+            player = PlayerManager.Instance.CurrentPlayer;
+            if (player == null) return;
+
+            // カメラをプレイヤー中心に即合わせる
+            transform.position = new Vector3(
+                player.position.x,
+                player.position.y,
+                transform.position.z
+            );
+
+            return;
+        }
+
+        // 遅れて追従
+        Vector3 targetPosition = new Vector3(
+            player.position.x,
+            player.position.y,
+            transform.position.z
+        );
+
+        transform.position = Vector3.Lerp(
+            transform.position,
+            targetPosition,
+            followSpeed * Time.deltaTime
+        );
     }
-
-    //playerの位置を取得
-    Vector3 targetPosition = new Vector3(player.position.x, player.position.y, transform.position.z);
-
-    //スムーズにカメラを追従させる
-    transform.position = Vector3.Lerp(transform.position, targetPosition, smoothspeed * Time.deltaTime);
-  }
-  */
-
-  void Update()
-  {
-    if (player == null){
-      return;
-    }
-
-    //playerにカメラを固定
-    transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
-  }
 }
