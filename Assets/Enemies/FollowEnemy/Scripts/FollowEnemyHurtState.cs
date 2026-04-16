@@ -3,17 +3,17 @@ using UnityEngine;
 /// <summary>
 /// 敵がダメージを受けた状態
 /// </summary>
-public class EnemyHurtState : IEnemyState
+public class FollowEnemyHurtState : IEnemyState
 {
-    private readonly EnemyFollowController controller;
+    private readonly FollowEnemyController controller;
     private readonly FollowEnemyAnimation animation;
     private readonly StatusManager statusManager;
 
     private float hurtDuration = 0.5f;
     private float hurtTimer = 0f;
 
-    public EnemyHurtState(
-        EnemyFollowController controller,
+    public FollowEnemyHurtState(
+        FollowEnemyController controller,
         FollowEnemyAnimation animation,
         StatusManager statusManager)
     {

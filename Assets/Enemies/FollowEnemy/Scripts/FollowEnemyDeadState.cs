@@ -3,14 +3,14 @@ using UnityEngine;
 /// <summary>
 /// 敵が死亡状態
 /// </summary>
-public class EnemyDeadState : IEnemyState
+public class FollowEnemyDeadState : IEnemyState
 {
     private readonly FollowEnemyAnimation animation;
     private readonly GameObject gameObject;
     private readonly float destroyDelay = 2f;
     private float deadTimer = 0f;
 
-    public EnemyDeadState(FollowEnemyAnimation animation, GameObject gameObject)
+    public FollowEnemyDeadState(FollowEnemyAnimation animation, GameObject gameObject)
     {
         this.animation = animation;
         this.gameObject = gameObject;

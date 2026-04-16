@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 敵がプレイヤーに向かって移動する状態
 /// </summary>
-public class EnemyMoveState : IEnemyState
+public class FollowEnemyMoveState : IEnemyState
 {
-    private readonly EnemyFollowController controller;
+    private readonly FollowEnemyController controller;
     private readonly StatusManager statusManager;
     private readonly FollowEnemyAnimation animation;
     private readonly Transform transform;
@@ -13,8 +13,8 @@ public class EnemyMoveState : IEnemyState
 
     private Transform playerTarget;
 
-    public EnemyMoveState(
-        EnemyFollowController controller,
+    public FollowEnemyMoveState(
+        FollowEnemyController controller,
         StatusManager statusManager,
         FollowEnemyAnimation animation,
         Transform transform,

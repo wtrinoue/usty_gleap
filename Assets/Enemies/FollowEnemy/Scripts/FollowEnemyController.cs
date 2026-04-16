@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(FollowEnemyAnimation))]
-public class EnemyFollowController : MonoBehaviour
+public class FollowEnemyController : MonoBehaviour
 {
     private Transform player;
 
@@ -16,11 +16,11 @@ public class EnemyFollowController : MonoBehaviour
 
     // 状態管理
     private IEnemyState currentState;
-    private EnemyIdleState idleState;
-    private EnemyMoveState moveState;
-    private EnemyHurtState hurtState;
-    private EnemyDeadState deadState;
-    private EnemyAttackState attackState;
+    private FollowEnemyIdleState idleState;
+    private FollowEnemyMoveState moveState;
+    private FollowEnemyHurtState hurtState;
+    private FollowEnemyDeadState deadState;
+    private FollowEnemyAttackState attackState;
 
     void Start()
     {
@@ -38,17 +38,17 @@ public class EnemyFollowController : MonoBehaviour
 
     private void InitializeStates()
     {
-        idleState = new EnemyIdleState(this, animation);
-        moveState = new EnemyMoveState(this, statusManager, animation, transform, stopDistance);
-        hurtState = new EnemyHurtState(this, animation, statusManager);
-        deadState = new EnemyDeadState(animation, gameObject);
-        attackState = new EnemyAttackState(this, animation, statusActionHolder);
+        idleState = new FollowEnemyIdleState(this, animation);
+        moveState = new FollowEnemyMoveState(this, statusManager, animation, transform, stopDistance);
+        hurtState = new FollowEnemyHurtState(this, animation, statusManager);
+        deadState = new FollowEnemyDeadState(animation, gameObject);
+        attackState = new FollowEnemyAttackState(this, animation, statusActionHolder);
     }
 
     void Update()
     {
         // 死亡状態なら何もしない
-        if (currentState is EnemyDeadState)
+        if (currentState is FollowEnemyDeadState)
         {
             currentState.Update();
             return;
@@ -66,9 +66,9 @@ public class EnemyFollowController : MonoBehaviour
     private void CheckMove()
     {
         // 移動可能かつ移動状態以外の場合、移動状態に遷移
-        if (!(currentState is EnemyMoveState) && 
-            !(currentState is EnemyDeadState) &&
-            !(currentState is EnemyAttackState))
+        if (!(currentState is FollowEnemyMoveState) && 
+            !(currentState is FollowEnemyDeadState) &&
+            !(currentState is FollowEnemyAttackState))
         {
             ChangeState(moveState);
         }
@@ -85,7 +85,7 @@ public class EnemyFollowController : MonoBehaviour
 
     private void CheckHurt()
     {
-        if (currentState is EnemyDeadState) return;
+        if (currentState is FollowEnemyDeadState) return;
 
         float currentHp = statusManager.BaseStatus.CurrentHP;
 
@@ -120,8 +120,8 @@ public class EnemyFollowController : MonoBehaviour
     /// <summary>
     /// 外部から状態取得用（状態クラスから利用）
     /// </summary>
-    public EnemyIdleState GetIdleState() => idleState;
-    public EnemyMoveState GetMoveState() => moveState;
+    public FollowEnemyIdleState GetIdleState() => idleState;
+    public FollowEnemyMoveState GetMoveState() => moveState;
 
     public Transform GetPlayerTransform() => player;
     public void SetPlayerTransform(Transform newPlayer) => player = newPlayer;

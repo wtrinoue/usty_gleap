@@ -3,12 +3,12 @@ using UnityEngine;
 /// <summary>
 /// 敵がアイドル状態（移動しない）
 /// </summary>
-public class EnemyIdleState : IEnemyState
+public class FollowEnemyIdleState : IEnemyState
 {
-    private readonly EnemyFollowController controller;
+    private readonly FollowEnemyController controller;
     private readonly FollowEnemyAnimation animation;
 
-    public EnemyIdleState(EnemyFollowController controller, FollowEnemyAnimation animation)
+    public FollowEnemyIdleState(FollowEnemyController controller, FollowEnemyAnimation animation)
     {
         this.controller = controller;
         this.animation = animation;

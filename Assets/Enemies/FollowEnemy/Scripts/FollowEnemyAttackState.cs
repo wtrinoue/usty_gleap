@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 敵が攻撃している状態
 /// </summary>
-public class EnemyAttackState : IEnemyState
+public class FollowEnemyAttackState : IEnemyState
 {
-    private readonly EnemyFollowController controller;
+    private readonly FollowEnemyController controller;
     private readonly FollowEnemyAnimation animation;
     private readonly StatusActionHolder statusActionHolder;
 
@@ -14,8 +14,8 @@ public class EnemyAttackState : IEnemyState
     private float attackDuration = 0.5f;
     private float attackTimer = 0f;
 
-    public EnemyAttackState(
-        EnemyFollowController controller,
+    public FollowEnemyAttackState(
+        FollowEnemyController controller,
         FollowEnemyAnimation animation,
         StatusActionHolder statusActionHolder)
     {
