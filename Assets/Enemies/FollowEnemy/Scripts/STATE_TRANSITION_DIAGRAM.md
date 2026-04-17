@@ -31,47 +31,47 @@
                 [Destroy]              Move     Move
 ```
 
-## Mermaid図
+## Mermaid図 ※Markdown Preview Mermaid Supportという拡張機能をいれて
 
 ```mermaid
 stateDiagram-v2
     [*] --> Idle: Start
-    
+
     Idle --> Move: CheckMove()<br/>（自動遷移）
-    
+
     Move --> Idle: プレイヤー<br/>見失い
-    
+
     Move --> Hurt: CheckHurt()<br/>（HP減少）
-    
+
     Move --> Dead: CheckDeath()<br/>（HP ≤ 0）
-    
+
     Move --> Attack: OnCollisionEnter2D()<br/>（プレイヤー衝突）
-    
+
     Hurt --> Move: 0.5秒経過<br/>（ダメージ完了）
-    
+
     Attack --> Move: 0.5秒経過<br/>（攻撃完了）
-    
+
     Dead --> [*]: 2秒経過<br/>（Destroy）
-    
+
     note right of Idle
         プレイヤー未発見
         または復帰待機中
     end note
-    
+
     note right of Move
         プレイヤーに向かって移動
     end note
-    
+
     note right of Hurt
         ダメージアニメーション
         duration: 0.5s
     end note
-    
+
     note right of Attack
         攻撃アニメーション
         duration: 0.5s
     end note
-    
+
     note right of Dead
         死亡アニメーション
         2秒後に破棄
@@ -81,13 +81,15 @@ stateDiagram-v2
 ## 各状態の説明
 
 ### Idle（アイドル）
+
 - **説明**: プレイヤーが見つからない、または何か他の処理から復帰する状態
 - **主処理**: アニメーション停止
-- **遷移先**: 
+- **遷移先**:
   - → Move（CheckMoveで自動遷移）
   - → Dead（CheckDeathでHP≤0検知）
 
 ### Move（移動）
+
 - **説明**: プレイヤーを追跡して移動する通常の敵の動き
 - **主処理**: プレイヤー方向への移動、速度管理
 - **遷移先**:
@@ -97,6 +99,7 @@ stateDiagram-v2
   - → Dead（HP≤0）
 
 ### Hurt（被撃）
+
 - **説明**: ダメージを受けた時のアニメーション状態
 - **処理時間**: 0.5秒
 - **主処理**: Hurt アニメーション再生、タイマー計測
@@ -104,6 +107,7 @@ stateDiagram-v2
   - → Move（0.5秒経過後、自動復帰）
 
 ### Attack（攻撃）
+
 - **説明**: プレイヤーと衝突した時の攻撃状態
 - **処理時間**: 0.5秒
 - **主処理**: Attack アニメーション再生、攻撃処理実行、タイマー計測
@@ -111,6 +115,7 @@ stateDiagram-v2
   - → Move（0.5秒経過後、自動復帰）
 
 ### Dead（死亡）
+
 - **説明**: HP≤0 になった死亡状態
 - **処理時間**: 2秒
 - **主処理**: Death アニメーション再生、破棄タイマー計測
@@ -162,7 +167,7 @@ private void CheckDeath()
 {
     float currentHp = statusManager.BaseStatus.CurrentHP;
     if (currentHp > 0) return;
-    
+
     ChangeState(deadState);  // Dead状態へ遷移
 }
 
@@ -178,4 +183,3 @@ public void ChangeState(IEnemyState newState)
     currentState.Enter();  // 新しい状態の開始処理
 }
 ```
-
