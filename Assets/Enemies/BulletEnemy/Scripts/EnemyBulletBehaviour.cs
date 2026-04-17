@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyBulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float lifeTimeSeconds = 5f;
+    [SerializeField] private float bulletSpeed = 10f;
 
     private StatusActionHolder statusActionHolder;
     private StatusManager statusManager;
@@ -26,11 +27,10 @@ public class EnemyBulletBehaviour : MonoBehaviour
     void Update()
     {
         if (isDestroyed) return;
-        if (rb == null || statusManager == null) return;
+        if (rb == null) return;
 
-        float speed = statusManager.BaseStatus.BaseSpeed;
         Vector2 direction = transform.right;
-        rb.linearVelocity = direction * speed;
+        rb.linearVelocity = direction * bulletSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
