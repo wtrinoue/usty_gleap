@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: dae9a73df19141249be911988ee9d0d5, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: a63934fd4b7dfe245b6ce6f324a79c53, type: 2}
+  baseStatusSO: {fileID: 11400000, guid: 22523f251e7b7f640b47620851e4dd44, type: 2}
+  buffStatusSO: {fileID: 11400000, guid: f6c9973ccd1af71469fff3721112c0d2, type: 2}
 --- !u!114 &4047926306778115750
 MonoBehaviour:
   m_ObjectHideFlags: 0
