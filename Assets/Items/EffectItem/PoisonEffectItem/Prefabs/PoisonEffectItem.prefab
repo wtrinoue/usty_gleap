@@ -110,6 +110,7 @@ MonoBehaviour:
   selfActions: []
   targetActions:
   - {fileID: 11400000, guid: c3f61ee904d680444a7e438308370e67, type: 2}
+  generateActions: []
 --- !u!114 &2256131687667701363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,4 +187,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisonEffectItemBehaviour
   effects:
-  - {fileID: 11400000, guid: 8dbfbd725ba50174d9f3928d6ff7af9b, type: 2}
+  - {fileID: 11400000, guid: 4defd9fcd2d682a42a1ad4b6720c1ae1, type: 2}
