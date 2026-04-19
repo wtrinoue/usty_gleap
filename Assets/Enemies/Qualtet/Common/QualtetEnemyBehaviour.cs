@@ -1,12 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-public interface IQualtetEnemyRole
-{
-    Vector2 CalculateMoveDirection(Transform self, Transform player);
-    void ApplyBulletEffect(NoteBulletBehaviour note);
-}
-
 public abstract class QualtetEnemyBehaviour : MonoBehaviour
 {
     public GameObject noteBulletCenter;
@@ -19,7 +13,6 @@ public abstract class QualtetEnemyBehaviour : MonoBehaviour
 
     private Transform player;
     private float speed;
-    private bool isGameOver = false;
     private StatusManager statusManager;
     private StatusActionHolder statusActionHolder;
     private SelfStatusAction deathAction;
@@ -43,79 +36,38 @@ public abstract class QualtetEnemyBehaviour : MonoBehaviour
         deathAction = statusActionHolder.GetSelfStatusActionFromIndex(0);
         player = GameObject.FindWithTag("Player")?.transform;
         effectRoutine = StartCoroutine(ApplyEffectLoop());
+        shotRoutine = StartCoroutine(ShotLoop());
     }
 
     protected virtual void Update()
     {
+        Move();
+        LookAtPlayer();
+        deathAction.Execute(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(shotRoutine);
+    }
+
+    private void Move()
+    {
         speed = statusManager.GetSpeed();
-
-        if (player == null || isGameOver)
-        {
-            if (GameObject.FindWithTag("Player") == null) return;
-            player = GameObject.FindWithTag("Player").transform;
-            return;
-        }
-
-        Vector3 direction = role.CalculateMoveDirection(transform, player);
-        float distance = Vector3.Distance(player.position, transform.position);
+        Vector2 targetPoint = role.GetTargetPoint();
+        Vector3 direction = CalculateMoveDirection(transform.position, targetPoint);
+        float distance = Vector2.Distance(player.position, transform.position);
 
         if (distance > stopDistance)
         {
             transform.position += direction * speed * Time.deltaTime;
         }
-
-        HandleShootingByDistance();
-        LookAtPlayer();
-        deathAction.Execute(this.gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private Vector2 CalculateMoveDirection(Vector2 selfPoint, Vector2 targetPoint)
     {
-        if (collision.gameObject.CompareTag("Player") && false)
-        {
-            Debug.Log("Game Over!");
-            isGameOver = true;
-
-            if (collision.gameObject.TryGetComponent<PlayerController>(out var playerScript))
-            {
-                playerScript.enabled = false;
-            }
-
-            this.enabled = false;
-        }
-
-        float currentAttack = statusManager.GetAttackPower();
-        Debug.Log("敵の現在の攻撃力: " + currentAttack);
+        return (targetPoint - selfPoint).normalized;
     }
-
-    protected Vector2 GetDirectionToLeadEnemy(LayerMask leadEnemyLayer, float offsetDistance)
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            transform.position,
-            1000f,
-            leadEnemyLayer
-        );
-
-        if (hits.Length == 0)
-            return Vector2.zero;
-
-        Transform nearest = null;
-        float minDist = Mathf.Infinity;
-
-        foreach (var hit in hits)
-        {
-            float dist = Vector2.Distance(transform.position, hit.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                nearest = hit.transform;
-            }
-        }
-
-        Vector2 targetPoint = (Vector2)nearest.position + (Vector2)nearest.up * offsetDistance;
-        return (targetPoint - (Vector2)transform.position).normalized;
-    }
-
     private void LookAtPlayer()
     {
         if (player == null) return;
@@ -125,31 +77,22 @@ public abstract class QualtetEnemyBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-    private void HandleShootingByDistance()
+    private bool CanShootPlayer()
     {
-        if (player == null) return;
+        if (player == null) return false;
 
         float dist = Vector2.Distance(transform.position, player.position);
-
-        if (dist <= fireDistance)
-        {
-            if (shotRoutine == null)
-            {
-                shotRoutine = StartCoroutine(ShotLoop());
-            }
-        }
-        else if (shotRoutine != null)
-        {
-            StopCoroutine(shotRoutine);
-            shotRoutine = null;
-        }
+        return dist <= fireDistance;
     }
 
     private IEnumerator ShotLoop()
     {
         while (true)
         {
-            ShotNoteBullet();
+            if (CanShootPlayer())
+            {
+                ShotNoteBullet();
+            }
             yield return new WaitForSeconds(shotInterval);
         }
     }

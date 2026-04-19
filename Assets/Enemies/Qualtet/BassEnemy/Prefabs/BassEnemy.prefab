@@ -199,12 +199,9 @@ MonoBehaviour:
   noteBulletCenter: {fileID: 8754914063975639587, guid: 97064cade860a9040b2d2f2e62ba9bbe, type: 3}
   shotInterval: 2
   effectInterval: 0.5
-  fireDistance: 10
+  fireDistance: 0
   effectRadius: 10
   offsetDistance: 2
-  leadEnemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -222,7 +219,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

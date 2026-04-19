@@ -61,7 +61,7 @@ public class SinNoteBulletBehaviour : MonoBehaviour
     {
         if (isBass)
         {
-            transform.localScale = baseScale * 2f;
+            transform.localScale = baseScale * 1.5f;
         }
         else
         {
