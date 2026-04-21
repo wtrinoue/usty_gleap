@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class AreaCleaner : MonoBehaviour
+public class AreaCleaner : MonoBehaviour, IInteractable
 {
     [Header("対象レイヤー")]
     public LayerMask targetLayer;
@@ -24,7 +24,7 @@ public class AreaCleaner : MonoBehaviour
     // 範囲管理
     // -----------------------------
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (((1 << other.gameObject.layer) & targetLayer) != 0)
         {
@@ -69,6 +69,11 @@ public class AreaCleaner : MonoBehaviour
     /// 完全に非アクティブ化（まとめ処理）
     /// </summary>
     public void Deactivate()
+    {
+        ClearArea();
+        DisableArea();
+    }
+    public void Active()
     {
         ClearArea();
         DisableArea();

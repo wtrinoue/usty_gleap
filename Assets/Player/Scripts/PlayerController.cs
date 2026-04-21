@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log("MoveInput: " + moveInput);
+        // Debug.Log("MoveInput: " + moveInput);
 
         // Move担当へ渡す
         if (playerMove != null) playerMove.SetMoveInput(moveInput);
