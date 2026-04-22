@@ -413,6 +413,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interactor"",
+            ""id"": ""91e21a59-5dff-4992-9737-6174fdd2436d"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6a5a80d-73fe-4506-ac9a-ab4dcf29ce48"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""22f9d596-9674-46aa-b845-7daf5dff7403"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -425,11 +453,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_SelfDistruction = m_Player.FindAction("Self-Distruction", throwIfNotFound: true);
         m_Player_ChangeWeapon = m_Player.FindAction("Change-Weapon", throwIfNotFound: true);
         m_Player_ChangeGrave = m_Player.FindAction("Change-Grave", throwIfNotFound: true);
+        // Interactor
+        m_Interactor = asset.FindActionMap("Interactor", throwIfNotFound: true);
+        m_Interactor_Interact = m_Interactor.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerInputActions.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Interactor.enabled, "This will cause a leak and performance issues, PlayerInputActions.Interactor.Disable() has not been called.");
     }
 
     /// <summary>
@@ -652,6 +684,102 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Interactor
+    private readonly InputActionMap m_Interactor;
+    private List<IInteractorActions> m_InteractorActionsCallbackInterfaces = new List<IInteractorActions>();
+    private readonly InputAction m_Interactor_Interact;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Interactor".
+    /// </summary>
+    public struct InteractorActions
+    {
+        private @PlayerInputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InteractorActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Interactor/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Interactor_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Interactor; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InteractorActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InteractorActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InteractorActions" />
+        public void AddCallbacks(IInteractorActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InteractorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InteractorActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InteractorActions" />
+        private void UnregisterCallbacks(IInteractorActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InteractorActions.UnregisterCallbacks(IInteractorActions)" />.
+        /// </summary>
+        /// <seealso cref="InteractorActions.UnregisterCallbacks(IInteractorActions)" />
+        public void RemoveCallbacks(IInteractorActions instance)
+        {
+            if (m_Wrapper.m_InteractorActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InteractorActions.AddCallbacks(IInteractorActions)" />
+        /// <seealso cref="InteractorActions.RemoveCallbacks(IInteractorActions)" />
+        /// <seealso cref="InteractorActions.UnregisterCallbacks(IInteractorActions)" />
+        public void SetCallbacks(IInteractorActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InteractorActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InteractorActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InteractorActions" /> instance referencing this action map.
+    /// </summary>
+    public InteractorActions @Interactor => new InteractorActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
@@ -701,5 +829,20 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnChangeGrave(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Interactor" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InteractorActions.AddCallbacks(IInteractorActions)" />
+    /// <seealso cref="InteractorActions.RemoveCallbacks(IInteractorActions)" />
+    public interface IInteractorActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
