@@ -17,6 +17,7 @@ public class XBoxPlayerController : MonoBehaviour, PlayerInputActions.IPlayerAct
 
     private PlayerMove playerMove;
 
+
     private int currentWeaponCoreIndex = 0;
 
     private bool isDestroyed = false;
