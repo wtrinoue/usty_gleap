@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class WaveBehaviour : MonoBehaviour
+public class Wave : MonoBehaviour
 {
     void Start()
     {

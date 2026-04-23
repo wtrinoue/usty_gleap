@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameClearManager : MonoBehaviour
 {
-    private Emitter emitter;
+    private WaveManager waveManager;
     [SerializeField] private GameObject clearUI; // クリア時に表示するパネル
     [SerializeField] private string titleSceneName = "TitleScene"; // タイトルシーンの名前
 
@@ -17,7 +17,7 @@ public class GameClearManager : MonoBehaviour
         if (managerObj != null)
         {
             // 2. その中にある Emitter スクリプトを取得する
-            emitter = managerObj.GetComponent<Emitter>();
+            waveManager = managerObj.GetComponent<WaveManager>();
         }
 
         // 初期状態ではクリアUIを隠しておく
@@ -30,11 +30,11 @@ public class GameClearManager : MonoBehaviour
     void Update()
     {
         // もし WaveManager（emitter）が見つかっていないなら、これ以降の処理をしない
-        if (emitter == null) return; 
+        if (waveManager == null) return; 
     
         if (!isCleared)
         {
-            if (emitter.allWaveFinish)
+            if (waveManager.allWaveFinish)
             {
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
                 {
