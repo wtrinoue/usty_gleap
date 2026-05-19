@@ -1,11 +1,19 @@
 using System;
 using UnityEngine;
 
-public record State(
-    Action[] EnterActions,
-    Action[] UpdateActions,
-    Action[] ExitActions)
+public class State
 {
+    private Action[] EnterActions;
+    private Action[] UpdateActions;
+    private Action[] ExitActions;
+
+    public State(Action[] enterActions, Action[] updateActions, Action[] exitActions)
+    {
+        EnterActions = enterActions;
+        UpdateActions = updateActions;
+        ExitActions = exitActions;
+    }
+
     public void Enter()
     {
         foreach (var action in EnterActions)
