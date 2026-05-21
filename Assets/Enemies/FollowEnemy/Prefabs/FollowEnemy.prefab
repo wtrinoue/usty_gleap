@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4005288196365103872}
   - component: {fileID: 384001087861778228}
-  - component: {fileID: 7633983723285222834}
   - component: {fileID: 5404518737656942523}
   - component: {fileID: 3473272399624581993}
   - component: {fileID: 1244882610627716706}
@@ -20,6 +19,8 @@ GameObject:
   - component: {fileID: 9153975385781023320}
   - component: {fileID: 3785517862359643205}
   - component: {fileID: 239113354021163766}
+  - component: {fileID: 1036608306075887916}
+  - component: {fileID: 1501433598737231878}
   m_Layer: 0
   m_Name: FollowEnemy
   m_TagString: Enemy
@@ -100,20 +101,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7633983723285222834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7900997591495169756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4b5419dbdffcf74e9e6e0d178873f8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
-  speed: 4
-  stopDistance: 1
 --- !u!61 &5404518737656942523
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +131,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -290,3 +277,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956f3d4be8e0d134ab8ff72be1452894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowEnemyAnimation
+--- !u!114 &1036608306075887916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900997591495169756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53ff5fb63881a24b9975864305ab360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowEnemyMove
+  moveSpeed: 3.5
+  stopDistance: 1.5
+--- !u!114 &1501433598737231878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900997591495169756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11eb09ca630d9194f823a796d6e3af85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowEnemyAI
+  moveComponent: {fileID: 1036608306075887916}
+  animationComponent: {fileID: 239113354021163766}
+  statusManager: {fileID: 6201420893273491069}
+  statusActionHolder: {fileID: 3104746746397780670}
+  stopDistance: 10
+  playerTag: Player
+  currentState: 0
