@@ -1,9 +1,12 @@
+using UnityEngine; // Unity の Time.deltaTime などを使う場合は必要（あるいは引数で受け取る）
+
 public class StateMachine
 {
     private State current;
     private bool initialized = false;
 
-    public void Update(IStateProvider provider)
+    // 外部から deltaTime（Time.deltaTime など）を受け取れるように変更
+    public void Update(IStateProvider provider, float deltaTime)
     {
         State next = provider.ProvideState();
 
@@ -20,6 +23,7 @@ public class StateMachine
             current?.Enter();
         }
 
-        current?.Update();
+        // 修正した State.Update(float deltaTime) に経過時間を渡す
+        current?.Update(deltaTime);
     }
 }
