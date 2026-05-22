@@ -54,26 +54,6 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
 
     private void Awake()
     {
-        if (moveComponent == null)
-        {
-            moveComponent = GetComponent<FollowEnemyMove>();
-        }
-
-        if (animationComponent == null)
-        {
-            animationComponent = GetComponent<FollowEnemyAnimation>();
-        }
-
-        if (statusManager == null)
-        {
-            statusManager = GetComponent<StatusManager>();
-        }
-
-        if (statusActionHolder == null)
-        {
-            statusActionHolder = GetComponent<StatusActionHolder>();
-        }
-
         idleState = new StateBuilder()
             .Enter(() => animationComponent?.Idle())
             .Build();
@@ -132,13 +112,6 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
         LogStateIfChanged();
 
         return GetState(currentState);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag(playerTag)) return;
-
-        ChangeAttackState(other.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
