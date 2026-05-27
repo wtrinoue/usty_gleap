@@ -67,10 +67,11 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
     // -----------------------------
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        Debug.Log("Interactされました！");
 
         if (isPlayerInRange)
         {
+            Debug.Log("ExecuteInteractionされました！");
             ExecuteInteraction();
         }
     }
@@ -88,6 +89,7 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
 
         if (targetInteractableObject.TryGetComponent<IInteractable>(out var interactable))
         {
+            Debug.Log("IInteractableを発動しました");
             interactable.Active();
         }
         else

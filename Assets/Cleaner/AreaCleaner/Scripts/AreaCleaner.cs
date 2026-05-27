@@ -4,15 +4,17 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BoxCollider2D))]
 public class AreaCleaner : MonoBehaviour, IInteractable
 {
-    [Header("対象レイヤー")]
-    public LayerMask targetLayer;
+    [Header("Tag判定（優先）")]
+    [SerializeField] private string targetTag = "Enemy";
 
-    [Header("見た目（任意）")]
-    public SpriteRenderer spriteRenderer;
+    [Header("Layer判定（必要なら併用）")]
+    [SerializeField] private LayerMask targetLayer;
+
+    [Header("見た目")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private BoxCollider2D col;
 
-    // List → HashSet（重複防止＆高速化）
     private HashSet<GameObject> targets = new HashSet<GameObject>();
 
     void Awake()
@@ -25,12 +27,36 @@ public class AreaCleaner : MonoBehaviour, IInteractable
     }
 
     // -----------------------------
-    // Trigger管理
+    // 判定ロジック（Tag + Layer両対応）
+    // -----------------------------
+    private bool IsTarget(GameObject obj)
+    {
+        // Tag判定（メイン）
+        if (!string.IsNullOrEmpty(targetTag))
+        {
+            if (obj.CompareTag(targetTag))
+                return true;
+        }
+
+        // Layer判定（サブ）
+        if (targetLayer.value != 0)
+        {
+            int objLayer = obj.layer;
+            if ((targetLayer.value & (1 << objLayer)) != 0)
+                return true;
+        }
+
+        return false;
+    }
+
+    // -----------------------------
+    // Trigger
     // -----------------------------
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (IsInLayerMask(other.gameObject.layer, targetLayer))
+        if (IsTarget(other.gameObject))
         {
+            Debug.Log("消すためのオブジェクトを追加しました");
             targets.Add(other.gameObject);
         }
     }
@@ -40,17 +66,15 @@ public class AreaCleaner : MonoBehaviour, IInteractable
         targets.Remove(other.gameObject);
     }
 
-    private bool IsInLayerMask(int layer, LayerMask mask)
-    {
-        return (mask.value & (1 << layer)) != 0;
-    }
-
     // -----------------------------
     // 外部API
     // -----------------------------
     public void ClearArea()
     {
-        foreach (var obj in targets)
+        Debug.Log("削除開始");
+
+        var copy = new List<GameObject>(targets);
+        foreach (var obj in copy)
         {
             if (obj != null)
                 Destroy(obj);
@@ -59,59 +83,28 @@ public class AreaCleaner : MonoBehaviour, IInteractable
         targets.Clear();
     }
 
-    public void DisableArea()
-    {
-        if (col != null)
-            col.enabled = false;
-    }
-
-    public void ActivateArea()
-    {
-        if (col != null)
-            col.enabled = true;
-    }
-
-    public void Deactivate()
-    {
-        ClearArea();
-        DisableArea();
-    }
-
     public void Active()
     {
-        ActivateArea();
+        ClearArea();
     }
 
     // -----------------------------
-    // Sceneビュー可視化（重要）
+    // Gizmo可視化
     // -----------------------------
     private void OnDrawGizmos()
     {
         var box = GetComponent<BoxCollider2D>();
         if (box == null) return;
 
-        // ワイヤー（枠）
-        Gizmos.color = new Color(1f, 0f, 0f, 0.8f);
-
-        Matrix4x4 oldMatrix = Gizmos.matrix;
+        Matrix4x4 old = Gizmos.matrix;
         Gizmos.matrix = transform.localToWorldMatrix;
 
+        Gizmos.color = new Color(1f, 0f, 0f, 0.8f);
         Gizmos.DrawWireCube(box.offset, box.size);
 
-        // 半透明面
         Gizmos.color = new Color(1f, 0f, 0f, 0.15f);
         Gizmos.DrawCube(box.offset, box.size);
 
-        Gizmos.matrix = oldMatrix;
-    }
-
-    // Inspector変更時の安全性
-    private void OnValidate()
-    {
-        if (col == null)
-            col = GetComponent<BoxCollider2D>();
-
-        if (col != null)
-            col.isTrigger = true;
+        Gizmos.matrix = old;
     }
 }
