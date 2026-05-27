@@ -3,20 +3,17 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActions
 {
-    [Header("対象インタラクト先")]
-    [SerializeField] private GameObject targetInteractableObject;
+    [Header("対象インタラクト先（Inspector用）")]
+    [SerializeField] private List<MonoBehaviour> interactableObjects = new List<MonoBehaviour>();
 
     private BoxCollider2D col;
     private SpriteRenderer sd;
 
-    private bool isPlayerInRange = false;
-
     private PlayerInputActions inputActions;
 
-    // 将来拡張用（複数プレイヤー・NPC対応）
+    // Player管理（複数対応）
     private HashSet<GameObject> playersInRange = new HashSet<GameObject>();
 
     void Awake()
@@ -44,14 +41,13 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
     }
 
     // -----------------------------
-    // Trigger管理
+    // Trigger（Playerのみ管理）
     // -----------------------------
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
         playersInRange.Add(other.gameObject);
-        isPlayerInRange = playersInRange.Count > 0;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -59,7 +55,6 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
         if (!other.CompareTag("Player")) return;
 
         playersInRange.Remove(other.gameObject);
-        isPlayerInRange = playersInRange.Count > 0;
     }
 
     // -----------------------------
@@ -67,39 +62,34 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
     // -----------------------------
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Interactされました！");
+        if (!context.performed) return;
+        if (playersInRange.Count == 0) return;
 
-        if (isPlayerInRange)
-        {
-            Debug.Log("ExecuteInteractionされました！");
-            ExecuteInteraction();
-        }
+        ExecuteInteraction();
     }
 
     // -----------------------------
-    // 実行処理
+    // 実行処理（Interactable実行）
     // -----------------------------
     public void ExecuteInteraction()
     {
-        if (targetInteractableObject == null)
+        if (interactableObjects == null || interactableObjects.Count == 0)
         {
-            Debug.LogWarning("targetInteractableObject が未設定です");
+            Debug.LogWarning("インタラクト対象が設定されていません");
             return;
         }
 
-        if (targetInteractableObject.TryGetComponent<IInteractable>(out var interactable))
+        foreach (var obj in interactableObjects)
         {
-            Debug.Log("IInteractableを発動しました");
-            interactable.Active();
-        }
-        else
-        {
-            Debug.LogWarning("IInteractable が見つかりません");
+            if (obj is IInteractable interactable)
+            {
+                interactable.Active();
+            }
         }
     }
 
     // -----------------------------
-    // Gizmo可視化（重要）
+    // Gizmo
     // -----------------------------
     private void OnDrawGizmos()
     {
@@ -109,7 +99,6 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
         Matrix4x4 old = Gizmos.matrix;
         Gizmos.matrix = transform.localToWorldMatrix;
 
-        // 範囲表示（青）
         Gizmos.color = new Color(0f, 0.6f, 1f, 0.8f);
         Gizmos.DrawWireCube(box.offset, box.size);
 
@@ -119,15 +108,9 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
         Gizmos.matrix = old;
     }
 
-    // -----------------------------
-    // 安全化
-    // -----------------------------
     private void OnValidate()
     {
-        if (col == null)
-            col = GetComponent<BoxCollider2D>();
-
-        if (col != null)
-            col.isTrigger = true;
+        col = GetComponent<BoxCollider2D>();
+        if (col != null) col.isTrigger = true;
     }
 }
