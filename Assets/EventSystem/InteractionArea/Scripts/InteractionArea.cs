@@ -1,29 +1,36 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActions
 {
+    [Header("対象インタラクト先")]
     [SerializeField] private GameObject targetInteractableObject;
 
     private BoxCollider2D col;
     private SpriteRenderer sd;
+
     private bool isPlayerInRange = false;
+
     private PlayerInputActions inputActions;
+
+    // 将来拡張用（複数プレイヤー・NPC対応）
+    private HashSet<GameObject> playersInRange = new HashSet<GameObject>();
 
     void Awake()
     {
-
         inputActions = new PlayerInputActions();
         inputActions.Interactor.AddCallbacks(this);
 
         col = GetComponent<BoxCollider2D>();
         sd = GetComponent<SpriteRenderer>();
 
-        // Trigger設定
         col.isTrigger = true;
-        sd.enabled = false;
+
+        if (sd != null)
+            sd.enabled = false;
     }
 
     void OnEnable()
@@ -36,48 +43,89 @@ public class InteractionArea : MonoBehaviour, PlayerInputActions.IInteractorActi
         inputActions.Interactor.Disable();
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    // -----------------------------
+    // Trigger管理
+    // -----------------------------
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInRange = true;
-        }
-        Debug.Log("ぶつかりました");
-    }
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInRange = false;
-        }
-        Debug.Log("ぶつかりました");
+        if (!other.CompareTag("Player")) return;
+
+        playersInRange.Add(other.gameObject);
+        isPlayerInRange = playersInRange.Count > 0;
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        playersInRange.Remove(other.gameObject);
+        isPlayerInRange = playersInRange.Count > 0;
+    }
+
+    // -----------------------------
+    // Input
+    // -----------------------------
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+
         if (isPlayerInRange)
         {
             ExecuteInteraction();
         }
     }
 
+    // -----------------------------
+    // 実行処理
+    // -----------------------------
     public void ExecuteInteraction()
     {
         if (targetInteractableObject == null)
         {
-            Debug.LogWarning("targetObject が設定されていません");
+            Debug.LogWarning("targetInteractableObject が未設定です");
             return;
         }
 
-        IInteractable interactable = targetInteractableObject.GetComponent<IInteractable>();
-
-        if (interactable != null)
+        if (targetInteractableObject.TryGetComponent<IInteractable>(out var interactable))
         {
             interactable.Active();
         }
         else
         {
-            Debug.LogWarning("IInteractable を実装したコンポーネントが見つかりません");
+            Debug.LogWarning("IInteractable が見つかりません");
         }
+    }
+
+    // -----------------------------
+    // Gizmo可視化（重要）
+    // -----------------------------
+    private void OnDrawGizmos()
+    {
+        var box = GetComponent<BoxCollider2D>();
+        if (box == null) return;
+
+        Matrix4x4 old = Gizmos.matrix;
+        Gizmos.matrix = transform.localToWorldMatrix;
+
+        // 範囲表示（青）
+        Gizmos.color = new Color(0f, 0.6f, 1f, 0.8f);
+        Gizmos.DrawWireCube(box.offset, box.size);
+
+        Gizmos.color = new Color(0f, 0.6f, 1f, 0.15f);
+        Gizmos.DrawCube(box.offset, box.size);
+
+        Gizmos.matrix = old;
+    }
+
+    // -----------------------------
+    // 安全化
+    // -----------------------------
+    private void OnValidate()
+    {
+        if (col == null)
+            col = GetComponent<BoxCollider2D>();
+
+        if (col != null)
+            col.isTrigger = true;
     }
 }
