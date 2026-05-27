@@ -7,29 +7,31 @@ public class AreaCleaner : MonoBehaviour, IInteractable
     [Header("対象レイヤー")]
     public LayerMask targetLayer;
 
-    [Header("枠線（見た目）")]
+    [Header("見た目（任意）")]
     public SpriteRenderer spriteRenderer;
 
     private BoxCollider2D col;
-    private List<GameObject> targets = new List<GameObject>();
+
+    // List → HashSet（重複防止＆高速化）
+    private HashSet<GameObject> targets = new HashSet<GameObject>();
 
     void Awake()
     {
         col = GetComponent<BoxCollider2D>();
         col.isTrigger = true;
-        spriteRenderer.enabled = false;
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
     }
 
     // -----------------------------
-    // 範囲管理
+    // Trigger管理
     // -----------------------------
-
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (((1 << other.gameObject.layer) & targetLayer) != 0)
+        if (IsInLayerMask(other.gameObject.layer, targetLayer))
         {
-            if (!targets.Contains(other.gameObject))
-                targets.Add(other.gameObject);
+            targets.Add(other.gameObject);
         }
     }
 
@@ -38,13 +40,14 @@ public class AreaCleaner : MonoBehaviour, IInteractable
         targets.Remove(other.gameObject);
     }
 
-    // -----------------------------
-    // 外部公開API
-    // -----------------------------
+    private bool IsInLayerMask(int layer, LayerMask mask)
+    {
+        return (mask.value & (1 << layer)) != 0;
+    }
 
-    /// <summary>
-    /// 範囲内のオブジェクトを削除する
-    /// </summary>
+    // -----------------------------
+    // 外部API
+    // -----------------------------
     public void ClearArea()
     {
         foreach (var obj in targets)
@@ -56,26 +59,59 @@ public class AreaCleaner : MonoBehaviour, IInteractable
         targets.Clear();
     }
 
-    /// <summary>
-    /// コライダーを無効化（範囲も消す）
-    /// </summary>
     public void DisableArea()
     {
         if (col != null)
             col.enabled = false;
     }
 
-    /// <summary>
-    /// 完全に非アクティブ化（まとめ処理）
-    /// </summary>
+    public void ActivateArea()
+    {
+        if (col != null)
+            col.enabled = true;
+    }
+
     public void Deactivate()
     {
         ClearArea();
         DisableArea();
     }
+
     public void Active()
     {
-        ClearArea();
-        DisableArea();
+        ActivateArea();
+    }
+
+    // -----------------------------
+    // Sceneビュー可視化（重要）
+    // -----------------------------
+    private void OnDrawGizmos()
+    {
+        var box = GetComponent<BoxCollider2D>();
+        if (box == null) return;
+
+        // ワイヤー（枠）
+        Gizmos.color = new Color(1f, 0f, 0f, 0.8f);
+
+        Matrix4x4 oldMatrix = Gizmos.matrix;
+        Gizmos.matrix = transform.localToWorldMatrix;
+
+        Gizmos.DrawWireCube(box.offset, box.size);
+
+        // 半透明面
+        Gizmos.color = new Color(1f, 0f, 0f, 0.15f);
+        Gizmos.DrawCube(box.offset, box.size);
+
+        Gizmos.matrix = oldMatrix;
+    }
+
+    // Inspector変更時の安全性
+    private void OnValidate()
+    {
+        if (col == null)
+            col = GetComponent<BoxCollider2D>();
+
+        if (col != null)
+            col.isTrigger = true;
     }
 }
