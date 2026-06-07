@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BulletEnemyIdleState : IEnemyState
 {
-    private readonly BulletEnemyBehaviour controller;
+    private readonly BulletEnemyController controller;
 
-    public BulletEnemyIdleState(BulletEnemyBehaviour controller)
+    public BulletEnemyIdleState(BulletEnemyController controller)
     {
         this.controller = controller;
     }
