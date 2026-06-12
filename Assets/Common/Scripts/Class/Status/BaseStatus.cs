@@ -1,6 +1,7 @@
 public class BaseStatus
 {
     //属性
+    public float MaxHP {get; private set;}
     public float CurrentHP {get; private set;}
     public float BaseAttack {get; private set;}
     public float BaseSpeed {get; private set;}
@@ -30,6 +31,7 @@ public class BaseStatus
     //コンストラクタ
     public  BaseStatus(BaseStatusSO baseStatusSO)
     {
+        MaxHP = baseStatusSO.MaxHP;
         CurrentHP = baseStatusSO.MaxHP;
         BaseAttack = baseStatusSO.BaseAttack;
         BaseSpeed = baseStatusSO.BaseSpeed;
