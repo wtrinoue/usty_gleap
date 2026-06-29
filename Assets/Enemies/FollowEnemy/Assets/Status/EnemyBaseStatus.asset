@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee65e09c5e5de549aa4f5a3d799fca0, type: 3}
   m_Name: EnemyBaseStatus
   m_EditorClassIdentifier: Assembly-CSharp::BaseStatusSO
-  maxHP: 1
+  maxHP: 10
   baseAttack: 1
   baseSpeed: 1
   baseDefense: 1
