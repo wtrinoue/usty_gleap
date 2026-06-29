@@ -285,7 +285,7 @@ Animationは単なる動きに過ぎないので共通部品として絵が同�
 1. **「データ処理はそのままで、納得するAnimation動作に仕上げる」** これを最終目標にして修正していってください。
 
 **FollowEnemyでの実装例**
-- Animationを作成する。
+- AnimationControllerを作成する。
 <img width="959" height="521" alt="image" src="https://github.com/user-attachments/assets/994d2c30-1393-4dbe-8dd6-2f641ee633d9" />
 
 - AnimationControllerの構成をもとにそれぞれのAnimationへの遷移に対応したスクリプトを作成する。
