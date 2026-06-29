@@ -250,7 +250,6 @@ public class PlayerController : MonoBehaviour
 ### Animationの仕組み
 
 AnimationControllerでAnimationの遷移図を作ることで実装できる。リアルタイムでのAnimationはその時の状態で確定する。  
-<img width="959" height="521" alt="image" src="https://github.com/user-attachments/assets/994d2c30-1393-4dbe-8dd6-2f641ee633d9" />
 
 ちなみに今回は**定常状態**に必ず**回帰**するようにする発想で作った。他にもいろいろな遷移のさせ方があるが、状況に応じて組んでほしい。  
 <img width="2482" height="1898" alt="statetransition" src="https://github.com/user-attachments/assets/771c337e-6401-46e7-acce-2283bef13a3c" />
@@ -286,6 +285,8 @@ Animationは単なる動きに過ぎないので共通部品として絵が同�
 1. **「データ処理はそのままで、納得するAnimation動作に仕上げる」** これを最終目標にして修正していってください。
 
 **FollowEnemyでの実装例**
+- Animationを作成する。
+<img width="959" height="521" alt="image" src="https://github.com/user-attachments/assets/994d2c30-1393-4dbe-8dd6-2f641ee633d9" />
 
 - AnimationControllerの構成をもとにそれぞれのAnimationへの遷移に対応したスクリプトを作成する。
 
