@@ -10,24 +10,24 @@
 
 # ★ゲーム開発概要★
 ## ■目次
-1. [実装時の注意点](#「実装時の注意点」)
-1. [コンセプト、ストーリー](#「コンセプトストーリー」)
-1. [設計理念について](#「設計理念について」)
-1. [BuffとEffectの設計](#「buffとeffectの設計」)
-1. [WeaponCoreの設計](#「weaponcoreの設計」)
-1. [操作の設計](#「操作の設計」)
-1. [ディレクトリ構成](#「ディレクトリ構成」)
-1. [PlayerManagerの実装](#「playermanagerの実装」)
-1. [実行プロセスの集約化](#「実行プロセスの集約化」)
-1. [必須コンポーネント自動追加](#「必須コンポーネント自動追加」)
-1. [Animationの実装](#「animationの実装」)
-1. [InputManagerの実装](#「inputmanagerの実装」)
-## 「実装時の注意点」
+1. [実装時の注意点](#実装時の注意点)
+1. [コンセプト、ストーリー](#コンセプトストーリー)
+1. [設計理念について](#設計理念について)
+1. [BuffとEffectの設計](#buffとeffectの設計)
+1. [WeaponCoreの設計](#weaponcoreの設計)
+1. [操作の設計](#操作の設計)
+1. [ディレクトリ構成](#ディレクトリ構成)
+1. [PlayerManagerの実装](#playermanagerの実装)
+1. [実行プロセスの集約化](#実行プロセスの集約化)
+1. [必須コンポーネント自動追加](#必須コンポーネント自動追加)
+1. [Animationの実装](#animationの実装)
+1. [InputManagerの実装](#inputmanagerの実装)
+## 実装時の注意点
 **基本的に今まで作ったファイルの変更はしません。新しくファイルやデータを作ることをお願いします。仕様が変わると依存関係がある部分でバグが発生する可能性があります。**
-## 「コンセプト、ストーリー」
+## コンセプト、ストーリー
 今回のゲームは、ダダサバイバーのような見下ろし方2Dアクションゲームをベースとして、一般的な死の概念を覆したゲームを作成する。具体的には、Playerの体力がなくなったらGAMEOVERではなく、Graveというお墓を生成してステージを進むという感じになる。  
 舞台は中世で、主人公は勇者である。
-## 「設計理念について」
+## 設計理念について
 今回の開発では、すべてGameObjectにStatusHolder、StatusActionHolder、StatusManagerをアタッチすることによって、共通した汎用性の高い実装を試みた。目的としてはEnemyもPlayerもGraveも同じようにStatusのやり取りをできるようにすることで、多種多様なゲーム実装を可能にするためだ。
 - **StatusHolderの役割**  
 ScriptableObjectを利用して、オブジェクトごとにStatusを作成
@@ -68,7 +68,7 @@ StatusActionHolderにはCreate/TargetStatusAction、SelfStatusAction、GenerateA
 
 
 
-## 「BuffとEffectの設計」
+## BuffとEffectの設計
 バフとエフェクトは以下のように定義する。
 - **Buff**  
 Buffとは、GameObjectのBuffStatusに一時的な値の変化を与えるための要素である。一時的にBuffStatusを合算することで実装する。また、抽象クラスのBuffを継承したScriptableObjectクラスのメソッドをoverrideすることで、合算後にBuffStatusを操作する支配的なBuffも適用できる。
@@ -85,14 +85,14 @@ durationとして効果時間を定義し、この時間分効果は持続する
 
 - **発動間隔**  
 staticIntervalで、durationの持続時間の中でどのくらいの間隔で効果が発動するか決める。0の場合は、効果時間の中でずっと発動していることになる。
-## 「WeaponCoreの設計」
+## WeaponCoreの設計
 <img width="240" height="350" alt="weaponcore" src="https://github.com/user-attachments/assets/410db7ce-3da9-4e1d-8bf2-1355392033f4" />  
 
 ### 「説明」
 - WeaponCoreは、敵にダメージやバフなどの効果を与えるオブジェクトを生成・管理する役割を持つ。
 PlayerはWeaponCoreを呼び出すだけに責務を限定し、具体的な攻撃処理はすべてWeaponCoreに委ねる。
 これによりPlayerの実装はシンプルに保たれ、武器の追加もWeaponCoreを拡張するだけで対応できる。
-## 「操作の設計」
+## 操作の設計
 PlayerActionは以下のPC操作に対応して動作する。
 - ### 操作方法  
     - **WASD**  
@@ -106,7 +106,7 @@ PlayerActionは以下のPC操作に対応して動作する。
 
     - **スペース**  
     自爆 and リスポーン
-## 「ディレクトリ構成」
+## ディレクトリ構成
 ディレクトリは「機能 => ファイル形式 => 意味」の順で構成する。以下に例を示す。
 
 <img width="332" height="637" alt="image" src="https://github.com/user-attachments/assets/0aa4b000-f3e1-4bd5-b30d-82b74749e548" />
@@ -121,7 +121,7 @@ PlayerActionは以下のPC操作に対応して動作する。
   - システム  
    WaveSystem、Spawner
 
-## 「PlayerManagerの実装」
+## PlayerManagerの実装
 PlayerManagerをシーン上に配置し、Playerが自身の存在を登録・解除、他のオブジェクトがPlayerManagerを通してオブジェクトの存在を取得することで、Findtagなどの重い処理を回避する。  
 1. **PlayerManagerをシーンのHierarchyに配置する**
 <img width="283" height="43" alt="image" src="https://github.com/user-attachments/assets/f8e07f17-d72f-439c-918e-af996aba4cc7" />
@@ -141,7 +141,7 @@ PlayerManagerをシーン上に配置し、Playerが自身の存在を登録・�
     }
 ```
 
-## 「実行プロセスの集約化」
+## 実行プロセスの集約化
 　おそらくフレームごとの実装にはUpdate、一定時間の間隔での実装にはCoroutineを使っているが、各クラスに定義すると並列で処理しなければならないのでオーバーヘッドが増えて、オブジェクトの数だけ負荷が増加する。そのために、UpdateとCoroutineを実行するのは一か所にして、繰り返し処理をしたいオブジェクトはそこに関数を登録する形で処理する。  
 - まずはICoroutineUpdatableインターフェースが用意してある。
 ``` csharp
@@ -234,7 +234,7 @@ public class CoroutineManager : MonoBehaviour
 }
 ```
 
-## 「必須コンポーネント自動追加」
+## 必須コンポーネント自動追加
 ```csharp
 using UnityEngine;
 
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
     }
 }
 ```
-## 「Animationの実装」
+## Animationの実装
 ### Animationの仕組み
 
 AnimationControllerでAnimationの遷移図を作ることで実装できる。リアルタイムでのAnimationはその時の状態で確定する。  
@@ -330,7 +330,7 @@ public class FollowEnemyAnimation : MonoBehaviour
 ```
 
 - Animationのスクリプトが書き終えたところで、キャラの動作やシステムが書かれているスクリプトにAnimation用のメソッドを入れ込む。※Animationを始め入れるとかなり書き直しや新しい処理を加えないといけないので、上記のようなスクリプトができたら後ほど統合する。
-## 「InputManagerの実装」
+## InputManagerの実装
 ### 書くこと
 - シングルトンの説明
 - 実際に使う時のコーディングにおける注意点（特に登録解除忘れは禁物）
