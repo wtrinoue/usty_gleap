@@ -128,6 +128,11 @@ PlayerManagerをシーン上に配置し、Playerが自身の存在を登録・�
 
 1. **PlayerManagerのインスタンスを取得してPlayerをセット（例）**
 ```csharp
+// このようにして取得することができる。
+Transform x;
+x = PlayerManager.Instance.CurrentPlayer;
+```
+```csharp
     private Transform player;
 
     ///他の処理
