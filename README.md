@@ -236,6 +236,11 @@ public class CoroutineManager : MonoBehaviour
 
 ## 必須コンポーネント自動追加
 ```csharp
+// 以下のように宣言することによって、必要なコンポーネントがこのクラスをアタッチしたときに勝手につく。
+
+[RequireComponent(typeof(Rigidbody))]
+```
+```csharp
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]// ←これで勝手につく
