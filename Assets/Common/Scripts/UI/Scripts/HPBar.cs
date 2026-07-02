@@ -15,17 +15,17 @@ public class HPBar : MonoBehaviour
     private void Update()
     {
         // Debug.Log("まだ生きています");
-        if (_statusManager == null || _hpSlider == null)
-        {
-            Destroy(gameObject);
-            IsDestroyed = true;
-        }
-        ;
+        if (_statusManager == null || _hpSlider == null) return;
         if (IsDestroyed) return;
 
         BaseStatus status = _statusManager.BaseStatus;
         float currentHP = status.CurrentHP;
         float maxHP = status.MaxHP;
+        if (currentHP <= 0)
+        {
+            Destroy(gameObject);
+            IsDestroyed = true;
+        }
 
         // MaxHPが0の場合は0を設定
         _hpSlider.value = maxHP > 0 ? currentHP / maxHP : 0;
