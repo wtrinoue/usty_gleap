@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168b11be41f73af4da73aa4f9657fe00, type: 3}
   m_Name: SampleModifierDefinition
   m_EditorClassIdentifier: Assembly-CSharp::ModifierDefinition
-  type: 0
+  type: 1
   duration: 5
   interval: 0
-  modifiers: []
+  modifiers:
+  - category: 2
+    method: 1
+    value: 0
