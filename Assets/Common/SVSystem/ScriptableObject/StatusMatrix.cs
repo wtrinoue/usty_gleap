@@ -34,7 +34,7 @@ public class StatusMatrix : ScriptableObject
     }
 
 #if UNITY_EDITOR
-    private void OnValidate()
+    public void OnValidate()
     {
         int size =
             (int)StatusCategory.Count *
