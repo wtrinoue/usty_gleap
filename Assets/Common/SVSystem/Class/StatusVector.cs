@@ -67,11 +67,6 @@ public class StatusVector
         values[(int)c, (int)m] += v;
     }
 
-    public void Sub(StatusCategory c, StatusMethod m, float v)
-    {
-        values[(int)c, (int)m] -= v;
-    }
-
     // ✔ StatusVector同士の合成
     public void Merge(StatusVector other)
     {
