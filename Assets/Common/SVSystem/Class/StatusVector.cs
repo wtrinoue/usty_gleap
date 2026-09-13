@@ -1,8 +1,9 @@
 using System;
+using System.Threading.Tasks;
 
 public class StatusVector
 {
-    private readonly float[,] values;
+    private readonly float[,] values; // readonlyは差し替えは防げるが、中身の変更は防げない。
 
     // 空初期化
     public StatusVector()
@@ -38,7 +39,7 @@ public class StatusVector
         {
             values[c, (int)StatusMethod.Base] = 0f;
             values[c, (int)StatusMethod.Add] = 0f;
-            values[c, (int)StatusMethod.Multiply] = 1f;
+            values[c, (int)StatusMethod.Multiply] = 0f;
         }
     }
 
@@ -82,6 +83,21 @@ public class StatusVector
             }
         }
     }
+
+    // 並列処理を用いたStatusVector同士の合成（10000~要素ぐらいから）
+    public void ParallelMerge(StatusVector other)
+    {
+        // 外側のループ（Category）を並列化
+        Parallel.For(0, (int)StatusCategory.Count, c =>
+        {
+            // 内側のループ（Method）は通常
+            for (int m = 0; m < (int)StatusMethod.Count; m++)
+            {
+                values[c, m] += other.values[c, m];
+            }
+        });
+    }
+
 
     // StatusVectorの一時的な合成のためのメソッド。バフシステムに用いる。
     public StatusVector Offset(StatusVector vector)
