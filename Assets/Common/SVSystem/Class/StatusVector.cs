@@ -33,6 +33,20 @@ public class StatusVector
         }
     }
 
+    // コピーコンストラクター
+    public StatusVector(StatusVector other)
+    {
+        values = new float[
+            (int)StatusCategory.Count,
+            (int)StatusMethod.Count
+        ];
+        for (int c = 0; c < (int)StatusCategory.Count; c++)
+        {
+            values[c, (int)StatusMethod.Base] =
+                other.Get((StatusCategory)c, StatusMethod.Base);
+        }
+    }
+
     private void InitializeDefaults()
     {
         for (int c = 0; c < (int)StatusCategory.Count; c++)

@@ -2,38 +2,44 @@ using UnityEngine;
 
 public class ModifierManager : MonoBehaviour
 {
-    public StatusVector Status { get; private set; }
+    [Header("StatusMatrix (ステータスの初期値)")]
+    public StatusMatrix statusMatrix;
+    public StatusVector statusVector { get; private set; }
 
-    public ModifierContainer Modifiers { get; } = new ModifierContainer();
+    public ModifierContainer modifierContainer { get; } = new ModifierContainer();
 
     private void Awake()
     {
-        Status = new StatusVector();
+        statusVector = new StatusVector(statusMatrix);
     }
 
     private void Update()
     {
-        Modifiers.Update(Time.deltaTime);
-        Modifiers.ApplyEffect(Status);
+        modifierContainer.Update(Time.deltaTime);
+        modifierContainer.ApplyEffect(statusVector);
     }
 
     public StatusVector GetStatus()
     {
-        return Status.Offset(Modifiers.CalculateBuff());
+        return statusVector.Offset(modifierContainer.CalculateBuff());
     }
 
-    public void AddModzifier(Modifier modifier)
+    public void AddModifier(Modifier modifier)
     {
-        Modifiers.Add(modifier);
+        modifierContainer.Add(modifier);
     }
 
     public void RemoveModifier(Modifier modifier)
     {
-        Modifiers.Remove(modifier);
+        modifierContainer.Remove(modifier);
     }
 
     public void ApplyEffects()
     {
-        Modifiers.ApplyEffect(Status);
+        modifierContainer.ApplyEffect(statusVector);
     }
 }
+
+/*
+現在のStatusのやり取りは関数の引数にStatusVectorを渡すことで処理をしていたが、そうではなくて、元なるステータスだけを受け取って
+*/
