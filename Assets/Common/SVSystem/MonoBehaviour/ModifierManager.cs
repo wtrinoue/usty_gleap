@@ -8,12 +8,10 @@ public class ModifierManager : MonoBehaviour
     public StatusVector statusVector { get; private set; }
 
     public ModifierContainer modifierContainer { get; } = new ModifierContainer();
-    private Queue<StatusToken> statusTokens;
 
     private void Awake()
     {
         statusVector = new StatusVector(statusMatrix);
-        ProcessAllTokens();
     }
 
     private void Update()
@@ -44,16 +42,7 @@ public class ModifierManager : MonoBehaviour
 
     public void AddStatusToken(StatusToken token)
     {
-        statusTokens.Enqueue(token);
-    }
-
-    public void ProcessAllTokens()
-    {
-        while (statusTokens.Count > 0)
-        {
-            StatusToken token = statusTokens.Dequeue();//　キューを用いることで使い終わったら消去
-            token.Execute(statusVector, GetStatus());
-        }
+        token.Execute(statusVector, GetStatus());
     }
 }
 
