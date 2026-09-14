@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public abstract class StatusToken
 {
     private StatusVector source;
@@ -7,5 +9,22 @@ public abstract class StatusToken
         source = new StatusVector(s);
     }
 
-    abstract public void Execute(in StatusVector target);
+    public StatusVector GetSource()
+    {
+        return source;
+    }
+
+    abstract public void Execute(in StatusVector target, StatusVector modified);
+}
+
+public class DamageToken : StatusToken
+{
+    public override void Execute(in StatusVector target, StatusVector modified)
+    {
+        float sourceAttack = GetSource().Calculate(StatusCategory.Attack);
+        float targetDefence = modified.Calculate(StatusCategory.Defense);
+        float damage = sourceAttack - targetDefence;
+        if (damage < 0) { damage = 0; }
+        target.Add(StatusCategory.HP, StatusMethod.Base, -damage);
+    }
 }
