@@ -8,6 +8,7 @@ public class ModifierManager : MonoBehaviour
     public StatusVector statusVector { get; private set; }
 
     public ModifierContainer modifierContainer { get; } = new ModifierContainer();
+    public List<StatusToken> eternalTokens = new();
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class ModifierManager : MonoBehaviour
     {
         modifierContainer.Update(Time.deltaTime);
         modifierContainer.ApplyEffect(statusVector);
+        ExecuteEternalTokens();
     }
 
     public StatusVector GetStatus()
@@ -40,9 +42,22 @@ public class ModifierManager : MonoBehaviour
         modifierContainer.ApplyEffect(statusVector);
     }
 
-    public void AddStatusToken(StatusToken token)
+    public void ApplyOneTimeToken(StatusToken token)
     {
         token.Execute(statusVector, GetStatus());
+    }
+
+    public void ApplyEternalToken(StatusToken token)
+    {
+        eternalTokens.Add(token);
+    }
+
+    public void ExecuteEternalTokens()
+    {
+        foreach (StatusToken token in eternalTokens)
+        {
+            token.Execute(statusVector, GetStatus());
+        }
     }
 }
 

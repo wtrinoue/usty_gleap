@@ -24,13 +24,13 @@ public class StatusVector
             (int)StatusMethod.Count
         ];
 
-        InitializeDefaults();
-
         for (int c = 0; c < (int)StatusCategory.Count; c++)
         {
             values[c, (int)StatusMethod.Base] =
                 matrix.Get((StatusCategory)c, StatusMethod.Base);
         }
+
+        // ShowStatus();
     }
 
     // コピーコンストラクター
@@ -111,7 +111,7 @@ public class StatusVector
     // StatusVectorの一時的な合成のためのメソッド。バフシステムに用いる。
     public StatusVector Offset(StatusVector vector)
     {
-        var result = new StatusVector();
+        var result = new StatusVector(this);
         result.Merge(vector);
         return result;
     }
@@ -120,5 +120,28 @@ public class StatusVector
     {
         get => values[(int)c, (int)m];
         set => values[(int)c, (int)m] = value;
+    }
+
+    public void ShowStatus()
+    {
+        string logMessage = "=== ステータス行列 ===\n";
+
+        for (int c = 0; c < (int)StatusCategory.Count; c++)
+        {
+            // 行の開始
+            logMessage += $"Category {c}: [ ";
+
+            for (int m = 0; m < (int)StatusMethod.Count; m++)
+            {
+                // 値を追加（見やすくするためにタブ区切り）
+                logMessage += $"{values[c, m]}\t";
+            }
+
+            // 行の終わり
+            logMessage += "]\n";
+        }
+
+        // 最後にまとめて出力（1つのログとして表示されます）
+        UnityEngine.Debug.Log(logMessage);
     }
 }
