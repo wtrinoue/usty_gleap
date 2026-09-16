@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5153140834732788840}
   - component: {fileID: 6182630140095455659}
   - component: {fileID: 2614345941077991589}
+  - component: {fileID: 3058660990229491771}
+  - component: {fileID: 2552567665491058291}
   m_Layer: 0
   m_Name: BombCenter
   m_TagString: Untagged
@@ -108,7 +110,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2564319002652876670, guid: f645f221976919541ae3d96592ef77b6, type: 3}
   spawnCount: 10
   delay: 1
-  spawnRadius: 0.5
+  spawnRadius: 0.1
 --- !u!61 &6182630140095455659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,3 +184,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &3058660990229491771
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702547964573713928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 665164fb40d848d43a8312c6d38801f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2552567665491058291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702547964573713928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cd5bd51c15dad43a31d0c4d18b3125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombBallAnimation
