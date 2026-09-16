@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BombCenterBehaviour : MonoBehaviour
@@ -11,6 +12,9 @@ public class BombCenterBehaviour : MonoBehaviour
     private void Start()
     {
         Invoke(nameof(Explode), delay);
+
+        // 自分の方向を整える（丸い爆弾のアニメーションのため）
+        transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     private void Explode()
@@ -39,7 +43,16 @@ public class BombCenterBehaviour : MonoBehaviour
             Instantiate(projectilePrefab, spawnPos, rotation);
         }
 
+        // 爆弾のアニメーションを再生
+        BombBallAnimation animation = GetComponent<BombBallAnimation>();
+        animation.Explosion();
+
         // 自分を破壊
+        Invoke(nameof(DestroyMe), 0.5f);
+    }
+
+    private void DestroyMe()
+    {
         Destroy(gameObject);
     }
 }
