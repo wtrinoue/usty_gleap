@@ -1,0 +1,2 @@
+StatusVectorSystemでは基本的にRulesにDamageやDeadなどのルールを追加することで、様々な
+アクションに対応する。
