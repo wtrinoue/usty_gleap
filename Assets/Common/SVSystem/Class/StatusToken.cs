@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using NUnit.Framework.Internal.Filters;
 
 public abstract class StatusToken
 {
@@ -21,6 +22,25 @@ public abstract class StatusToken
     }
 
     abstract public void Execute(in StatusVector target, StatusVector modified);
+}
+
+// 数値を指定し、targetのStatusのパラメータに加算する特殊なToken
+public class CustomAddToken : StatusToken
+{
+    private StatusCategory category = StatusCategory.HP;
+    private StatusMethod method = StatusMethod.Base;
+    private float value = 0f;
+
+    public CustomAddToken(StatusCategory c, StatusMethod m, float v)
+    {
+        category = c;
+        method = m;
+        value = v;
+    }
+    public override void Execute(in StatusVector target, StatusVector modified)
+    {
+        target.Add(category, method, value);
+    }
 }
 
 public class DamageToken : StatusToken
