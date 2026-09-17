@@ -1,5 +1,8 @@
 using System;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using SC = StatusCategory;
+using SM = StatusMethod;
 
 public class StatusVector
 {
@@ -122,6 +125,12 @@ public class StatusVector
         set => values[(int)c, (int)m] = value;
     }
 
+    // ステータスについて、バリデーションを設定する。※これはStatusTokenで使用する際に用いる。
+    private void Validate()
+    {
+        StatusValidation.Validate(this);
+    }
+
     public void ShowStatus()
     {
         string logMessage = "=== ステータス行列 ===\n";
@@ -143,5 +152,36 @@ public class StatusVector
 
         // 最後にまとめて出力（1つのログとして表示されます）
         UnityEngine.Debug.Log(logMessage);
+    }
+}
+
+static class StatusValidation
+{
+    public static void Validate(in StatusVector s)
+    {
+        // 基本の体力に加算や乗算は省く
+        s.Set(SC.HP, SM.Add, 0f);
+        s.Set(SC.HP, SM.Multiply, 0f);
+
+
+        float minLimit = 0.01f;
+        float baseLimit = 1.0f;
+        float baseAndAdd = 0f;
+        foreach (SC sc in Enum.GetValues(typeof(SC)))
+        {
+            // StatusMethod.Multiplyはある一定値よりも大きくならないといけない。
+            if (1.0f + s.Get(sc, SM.Multiply) < minLimit)
+            {
+                s.Set(sc, SM.Multiply, minLimit - 1f);
+            }
+
+            // StatusMethod.BaseとStatusMethod.Addの和はある一定以上は保証する。
+            baseAndAdd = s.Get(sc, SM.Base) + s.Get(sc, SM.Add);
+            if (baseAndAdd < baseLimit)
+            {
+                s.Set(sc, SM.Add, baseLimit - baseAndAdd);
+            }
+        }
+
     }
 }
