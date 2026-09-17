@@ -9,6 +9,7 @@ public abstract class StatusToken
     public void SetSource(StatusVector s)
     {
         source = new StatusVector(s);
+        source.Validate();
     }
 
     public StatusVector GetSource()
@@ -21,7 +22,12 @@ public abstract class StatusToken
         action = a;
     }
 
-    abstract public void Execute(in StatusVector target, StatusVector modified);
+    public void Execute(in StatusVector target, StatusVector modified)
+    {
+        modified.Validate();
+        Calculate(target, modified);
+    }
+    abstract public void Calculate(in StatusVector target, StatusVector modified);
 }
 
 // 数値を指定し、targetのStatusのパラメータに加算する特殊なToken
@@ -37,7 +43,7 @@ public class CustomAddToken : StatusToken
         method = m;
         value = v;
     }
-    public override void Execute(in StatusVector target, StatusVector modified)
+    public override void Calculate(in StatusVector target, StatusVector modified)
     {
         target.Add(category, method, value);
     }
@@ -45,7 +51,7 @@ public class CustomAddToken : StatusToken
 
 public class DamageToken : StatusToken
 {
-    public override void Execute(in StatusVector target, StatusVector modified)
+    public override void Calculate(in StatusVector target, StatusVector modified)
     {
         float sourceAttack = GetSource().Calculate(StatusCategory.Attack);
         float targetDefense = modified.Calculate(StatusCategory.Defense);
@@ -57,7 +63,7 @@ public class DamageToken : StatusToken
 
 public class DeadToken : StatusToken
 {
-    public override void Execute(in StatusVector target, StatusVector modified)
+    public override void Calculate(in StatusVector target, StatusVector modified)
     {
         UnityEngine.Debug.Log("ダメージ計算中！！");
         float myHP = target.Get(StatusCategory.HP, StatusMethod.Base);

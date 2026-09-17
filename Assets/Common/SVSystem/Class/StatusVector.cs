@@ -126,7 +126,7 @@ public class StatusVector
     }
 
     // ステータスについて、バリデーションを設定する。※これはStatusTokenで使用する際に用いる。
-    private void Validate()
+    public void Validate()
     {
         StatusValidation.Validate(this);
     }
