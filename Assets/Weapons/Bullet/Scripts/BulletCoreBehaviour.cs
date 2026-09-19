@@ -9,7 +9,7 @@ public class BulletCoreBehaviour : MonoBehaviour
     void Start()
     {
         SpawnBullet();
-        Destroy(gameObject);
+        Invoke(nameof(DestroyMe), 0.5f);
     }
 
     public void SpawnBullet()
@@ -33,7 +33,7 @@ public class BulletCoreBehaviour : MonoBehaviour
         GameObject bullet = Instantiate(
             bulletPrefab,
             spawnPos,
-            transform.rotation* Quaternion.Euler(0f, 0f, -90f)
+            transform.rotation * Quaternion.Euler(0f, 0f, -90f)
         );
 
         // 向き：自分 → bullet（外向き）
@@ -43,5 +43,10 @@ public class BulletCoreBehaviour : MonoBehaviour
         bullet.transform.up = outwardDir;
         // 3Dなら下の行を使う
         // bullet.transform.forward = outwardDir;
+    }
+
+    private void DestroyMe()
+    {
+        Destroy(gameObject);
     }
 }
