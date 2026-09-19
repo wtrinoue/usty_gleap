@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cbf6396e04a804b9330c8653b01492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BladeCenterBehaviour
-  radius: 2.5
+  radius: 1.8
   count: 1
-  rotateSpeed: -180
+  rotateSpeed: -270
   rotateRange: 90
   orbitChildPrefab: {fileID: 2659088587549610347, guid: bbe8ab931938b4a41a764cd7e0c8aa98, type: 3}
