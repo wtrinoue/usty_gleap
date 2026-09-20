@@ -17,3 +17,7 @@
   - ScriptableObjectを自分のフォルダーで作成する。
   - etc...
 - ※ファイル構成が結構複雑になっているのでissuesで詳しく管理の仕方は説明します。
+
+# 開発関連リンク
+開発計画スライド（Canva) : https://canva.link/et882xr8diyfgrq  
+素材役割分担ホワイトボード（Canva）: https://canva.link/fbwm8e977e32r6q
