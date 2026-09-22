@@ -22,7 +22,7 @@ public class damageMonoBehaviour : MonoBehaviour
         if (mm == null) return;
         Debug.Log("ダメージが入りました！");
         DamageToken damageToken = new DamageToken();
-        damageToken.SetSource(gameObject.GetComponent<ModifierManager>().GetStatus()); // 自分の補正適用済みのステータスを入れる。
+        damageToken.ExtractStatus(gameObject.GetComponent<ModifierManager>().GetStatus()); // 自分の補正適用済みのステータスを入れる。
         damageToken.SetAction(() => { });
         mm.ApplyOneTimeToken(damageToken);
     }

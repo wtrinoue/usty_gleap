@@ -6,7 +6,7 @@ public abstract class StatusToken
 {
     private StatusVector source = new();// ここに渡し手のステータスを入れる。
     public Action action = () => { };
-    public void SetSource(StatusVector s)
+    public void ExtractStatus(StatusVector s)
     {
         source = new StatusVector(s);
         source.Validate();
