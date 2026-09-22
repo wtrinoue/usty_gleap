@@ -4,18 +4,8 @@ using NUnit.Framework.Internal.Filters;
 
 public abstract class StatusToken
 {
-    private StatusVector source = new();// ここに渡し手のステータスを入れる。
     public Action action = () => { };
-    public void ExtractStatus(StatusVector s)
-    {
-        source = new StatusVector(s);
-        source.Validate();
-    }
-
-    public StatusVector GetSource()
-    {
-        return source;
-    }
+    public abstract void ExtractStatus(in StatusVector s);
 
     public void SetAction(Action a)
     {
@@ -37,6 +27,8 @@ public class CustomAddToken : StatusToken
     private StatusMethod method = StatusMethod.Base;
     private float value = 0f;
 
+    public override void ExtractStatus(in StatusVector s) { }
+
     public CustomAddToken(StatusCategory c, StatusMethod m, float v)
     {
         category = c;
@@ -51,9 +43,13 @@ public class CustomAddToken : StatusToken
 
 public class DamageToken : StatusToken
 {
+    float sourceAttack = 0f;
+    public override void ExtractStatus(in StatusVector s)
+    {
+        sourceAttack = s.Calculate(StatusCategory.Attack);
+    }
     public override void Calculate(in StatusVector target, StatusVector modified)
     {
-        float sourceAttack = GetSource().Calculate(StatusCategory.Attack);
         float targetDefense = modified.Calculate(StatusCategory.Defense);
         float damage = sourceAttack - targetDefense;
         if (damage < 0) { damage = 0; }
@@ -63,6 +59,7 @@ public class DamageToken : StatusToken
 
 public class DeadToken : StatusToken
 {
+    public override void ExtractStatus(in StatusVector s) { }
     public override void Calculate(in StatusVector target, StatusVector modified)
     {
         UnityEngine.Debug.Log("ダメージ計算中！！");
