@@ -169,6 +169,7 @@ static class StatusValidation
         float baseAndAdd = 0f;
         foreach (SC sc in Enum.GetValues(typeof(SC)))
         {
+            if (sc == SC.Count) continue;
             // StatusMethod.Multiplyはある一定値よりも大きくならないといけない。
             if (1.0f + s.Get(sc, SM.Multiply) < minLimit)
             {
