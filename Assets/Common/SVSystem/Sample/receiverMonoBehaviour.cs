@@ -7,7 +7,7 @@ public class receiverMonoBehaviour : MonoBehaviour
     {
         DeadToken deadToken = new DeadToken();
         deadToken.SetAction(() => { Debug.Log("やられました！！"); Destroy(gameObject); });
-        gameObject.GetComponent<ModifierManager>().ApplyEternalToken(deadToken);
+        gameObject.GetComponent<StatusContainer>().ApplyEternalToken(deadToken);
     }
 }
 

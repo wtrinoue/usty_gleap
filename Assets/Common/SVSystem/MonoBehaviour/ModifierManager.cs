@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifierManager : MonoBehaviour
+public class StatusContainer : MonoBehaviour
 {
     [Header("StatusMatrix (ステータスの初期値)")]
     public StatusMatrix statusMatrix;

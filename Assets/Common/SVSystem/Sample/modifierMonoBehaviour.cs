@@ -19,7 +19,7 @@ public class modifierMonoBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ModifierManager mm = collision.gameObject.GetComponent<ModifierManager>();
+        StatusContainer mm = collision.gameObject.GetComponent<StatusContainer>();
         if (mm == null) return;
         Modifier modifier = new Modifier(modifierDefinition, this.gameObject);
         mm.AddModifier(modifier);
