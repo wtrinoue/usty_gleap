@@ -13,6 +13,7 @@ public class ModifierContainer
 
         if (modifier.IsBuff)
         {
+            // もし同じkeyを持っていたら除外（Buffは排他的である）
             if (buffs.ContainsKey(key))
                 return;
 
@@ -20,6 +21,7 @@ public class ModifierContainer
         }
         else if (modifier.IsEffect)
         {
+            // もし同じkeyを持っていたら除外（Effectは排他的である）
             if (effects.ContainsKey(key))
                 return;
 
@@ -47,6 +49,8 @@ public class ModifierContainer
         UpdateDictionary(effects, deltaTime);
     }
 
+
+    // Modifierの更新メソッド（寿命が来たら削除する）
     private void UpdateDictionary(Dictionary<ModifierKey, Modifier> dict, float deltaTime)
     {
         var keysToRemove = new List<ModifierKey>();
@@ -65,6 +69,7 @@ public class ModifierContainer
         }
     }
 
+    // Buffを計算して返すところ（Buffは一時的なものなのでbuffResultにまとめている。インターバルのリセットも担う。）
     public StatusVector CalculateBuff()
     {
 
@@ -80,7 +85,8 @@ public class ModifierContainer
         return buffResult;
     }
 
-    public void ApplyEffect(StatusVector status)
+    // EffectをStatusに適応するところ（Effectは永続効果なのでStatusを直接変更する。インターバルのリセットも担う。）
+    public void ApplyEffect(in StatusVector status)
     {
         foreach (var modifier in effects.Values)
         {
@@ -102,6 +108,7 @@ public class ModifierContainer
     }
 }
 
+// 「どのようなパラメータを変更するか」と「どこのオブジェクトからか」の情報を詰め込む構造体
 public struct ModifierKey
 {
     public GameObject Source;
