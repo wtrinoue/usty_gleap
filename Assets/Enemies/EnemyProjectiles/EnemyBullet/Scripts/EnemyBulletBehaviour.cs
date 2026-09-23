@@ -4,31 +4,23 @@ public class EnemyBulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float lifeTimeSeconds = 5f;
 
-    private StatusActionHolder statusActionHolder;
-    private StatusManager statusManager;
-    private TargetStatusAction attackAction;
+    private StatusContainer statusContainer;
     private Rigidbody2D rb;
     private bool isDestroyed;
 
     void Awake()
     {
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        statusManager = GetComponent<StatusManager>();
+        statusContainer = GetComponent<StatusContainer>();
         rb = GetComponent<Rigidbody2D>();
-        if (statusActionHolder != null)
-        {
-            attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
-        }
-
         StartCoroutine(LifeTimeRoutine());
     }
 
     void Update()
     {
         if (isDestroyed) return;
-        if (rb == null || statusManager == null) return;
+        if (rb == null || statusContainer == null) return;
 
-        float speed = statusManager.BaseStatus.BaseSpeed;
+        float speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
         Vector2 direction = transform.right;
         rb.linearVelocity = direction * speed;
     }
@@ -38,12 +30,11 @@ public class EnemyBulletBehaviour : MonoBehaviour
         if (isDestroyed) return;
 
         if (collision.CompareTag("Player") &&
-            collision.TryGetComponent<IHasStatusManager>(out var hasStatus))
+            collision.TryGetComponent<StatusContainer>(out var hasSC))
         {
-            if (attackAction != null)
-            {
-                attackAction.Execute(this.gameObject, collision.gameObject);
-            }
+            DamageToken damageToken = new DamageToken();
+            damageToken.ExtractStatus(statusContainer.GetStatus());
+            hasSC.ApplyOneTimeToken(damageToken);
             DestroyBullet();
         }
     }
