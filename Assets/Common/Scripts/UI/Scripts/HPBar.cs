@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class HPBar : MonoBehaviour
 {
-    [SerializeField] private StatusManager _statusManager;
+
+    [SerializeField] private StatusContainer _statusContainer;
     [SerializeField] private Slider _hpSlider;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
@@ -15,12 +16,11 @@ public class HPBar : MonoBehaviour
     private void Update()
     {
         // Debug.Log("まだ生きています");
-        if (_statusManager == null || _hpSlider == null) return;
+        if (_statusContainer == null || _hpSlider == null) return;
         if (IsDestroyed) return;
 
-        BaseStatus status = _statusManager.BaseStatus;
-        float currentHP = status.CurrentHP;
-        float maxHP = status.MaxHP;
+        float currentHP = _statusContainer.GetStatus().Get(StatusCategory.HP, StatusMethod.Base);
+        float maxHP = _statusContainer.statusMatrix.Get(StatusCategory.HP, StatusMethod.Base);
         if (currentHP <= 0)
         {
             Destroy(gameObject);
@@ -48,7 +48,7 @@ public class HPBar : MonoBehaviour
 
     public void Initialize()
     {
-        _statusManager = target.GetComponentInParent<StatusManager>(); //親コンポーネントのstatusManagerを取得
+        _statusContainer = target.GetComponentInParent<StatusContainer>(); //親コンポーネントのStatusContainerを取得
     }
 
 }
