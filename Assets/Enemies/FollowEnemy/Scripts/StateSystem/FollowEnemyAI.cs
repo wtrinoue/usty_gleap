@@ -15,7 +15,6 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
     [SerializeField] private FollowEnemyMove moveComponent;
     [SerializeField] private FollowEnemyAnimation animationComponent;
     [SerializeField] private StatusContainer statusContainer;
-    [SerializeField] private StatusActionHolder statusActionHolder;
     [SerializeField] private float stopDistance = 1f;
     [SerializeField] private string playerTag = "Player";
 
@@ -224,10 +223,11 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
 
         if (attackTimer < AttackDuration) return;
 
-        if (attackTarget != null && statusActionHolder != null)
+        if (attackTarget != null)
         {
-            TargetStatusAction attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
-            attackAction?.Execute(gameObject, attackTarget);
+            DamageToken damageToken = new();
+            damageToken.ExtractStatus(statusContainer.GetStatus());
+            attackTarget.GetComponent<StatusContainer>().ApplyOneTimeToken(damageToken);
         }
 
         currentState = FolloEnemyState.move;
