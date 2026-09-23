@@ -5,6 +5,7 @@ public class ModifierContainer
 {
     private readonly Dictionary<ModifierKey, Modifier> buffs = new();
     private readonly Dictionary<ModifierKey, Modifier> effects = new();
+    private readonly StatusVector buffResult = new StatusVector();
 
     public void Add(Modifier modifier)
     {
@@ -66,18 +67,17 @@ public class ModifierContainer
 
     public StatusVector CalculateBuff()
     {
-        StatusVector result = new StatusVector();
 
         foreach (var modifier in buffs.Values)
         {
             if (!modifier.CanInvoke())
                 continue;
 
-            modifier.Apply(result);
+            modifier.Apply(buffResult);
             modifier.ResetInterval();
         }
 
-        return result;
+        return buffResult;
     }
 
     public void ApplyEffect(StatusVector status)
