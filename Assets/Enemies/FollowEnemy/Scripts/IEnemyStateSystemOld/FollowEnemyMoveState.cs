@@ -6,7 +6,7 @@ using UnityEngine;
 public class FollowEnemyMoveState : IEnemyState
 {
     private readonly FollowEnemyController controller;
-    private readonly StatusManager statusManager;
+    private readonly StatusContainer statusContainer;
     private readonly FollowEnemyAnimation animation;
     private readonly Transform transform;
     private readonly float stopDistance;
@@ -15,13 +15,13 @@ public class FollowEnemyMoveState : IEnemyState
 
     public FollowEnemyMoveState(
         FollowEnemyController controller,
-        StatusManager statusManager,
+        StatusContainer statusContainer,
         FollowEnemyAnimation animation,
         Transform transform,
         float stopDistance)
     {
         this.controller = controller;
-        this.statusManager = statusManager;
+        this.statusContainer = statusContainer;
         this.animation = animation;
         this.transform = transform;
         this.stopDistance = stopDistance;
@@ -45,7 +45,7 @@ public class FollowEnemyMoveState : IEnemyState
 
         if (distance > stopDistance)
         {
-            float speed = statusManager.GetSpeed();
+            float speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
             transform.position += direction * speed * Time.deltaTime;
         }
     }

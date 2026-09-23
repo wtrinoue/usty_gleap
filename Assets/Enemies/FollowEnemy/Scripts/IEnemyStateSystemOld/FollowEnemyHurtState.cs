@@ -7,19 +7,16 @@ public class FollowEnemyHurtState : IEnemyState
 {
     private readonly FollowEnemyController controller;
     private readonly FollowEnemyAnimation animation;
-    private readonly StatusManager statusManager;
 
     private float hurtDuration = 0.5f;
     private float hurtTimer = 0f;
 
     public FollowEnemyHurtState(
         FollowEnemyController controller,
-        FollowEnemyAnimation animation,
-        StatusManager statusManager)
+        FollowEnemyAnimation animation)
     {
         this.controller = controller;
         this.animation = animation;
-        this.statusManager = statusManager;
     }
 
     public void Enter()

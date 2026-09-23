@@ -7,9 +7,7 @@ public class FollowEnemyAttackState : IEnemyState
 {
     private readonly FollowEnemyController controller;
     private readonly FollowEnemyAnimation animation;
-    private readonly StatusActionHolder statusActionHolder;
-
-    private TargetStatusAction attackAction;
+    private readonly StatusContainer statusContainer;
     private GameObject targetObject;
     private float attackDuration = 0.5f;
     private float attackTimer = 0f;
@@ -17,12 +15,11 @@ public class FollowEnemyAttackState : IEnemyState
     public FollowEnemyAttackState(
         FollowEnemyController controller,
         FollowEnemyAnimation animation,
-        StatusActionHolder statusActionHolder)
+        StatusContainer statusContainer)
     {
         this.controller = controller;
         this.animation = animation;
-        this.statusActionHolder = statusActionHolder;
-        attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
+        this.statusContainer = statusContainer;
     }
 
     public void Enter()
@@ -40,7 +37,9 @@ public class FollowEnemyAttackState : IEnemyState
         {
             if (targetObject != null)
             {
-                attackAction.Execute(controller.gameObject, targetObject);
+                DamageToken damageToken = new();
+                damageToken.ExtractStatus(statusContainer.GetStatus());
+                targetObject.GetComponent<StatusContainer>().ApplyOneTimeToken(damageToken);
             }
             controller.ChangeState(controller.GetMoveState());
         }
