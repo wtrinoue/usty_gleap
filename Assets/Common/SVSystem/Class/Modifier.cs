@@ -52,7 +52,7 @@ public class Modifier
         return Definition.modifiers;
     }
 
-    public void Apply(StatusVector statusVector)
+    public void Apply(in StatusVector statusVector)
     {
         foreach (var modifier in Definition.modifiers)
         {
