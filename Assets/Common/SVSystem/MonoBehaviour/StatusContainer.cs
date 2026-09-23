@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatusContainer : MonoBehaviour
 {
     [Header("StatusMatrix (ステータスの初期値)")]
-    public StatusMatrix statusMatrix;
+    public readonly StatusMatrix statusMatrix;
     public StatusVector statusVector { get; private set; }
 
     public ModifierContainer modifierContainer { get; } = new ModifierContainer();
