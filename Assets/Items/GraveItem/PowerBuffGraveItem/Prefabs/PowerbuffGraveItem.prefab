@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6363724980961574720}
   - component: {fileID: 8562093821465711751}
-  - component: {fileID: 2449180458317038502}
-  - component: {fileID: 7725438462304786260}
-  - component: {fileID: 7422237869093299377}
   - component: {fileID: 3496966345647153838}
   - component: {fileID: 8653076680049075066}
   m_Layer: 0
@@ -95,48 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2449180458317038502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2554084311231209875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: c3f61ee904d680444a7e438308370e67, type: 2}
-  generateActions: []
---- !u!114 &7725438462304786260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2554084311231209875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: fee457a690298de42b305cb8a6c87f24, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 9e3236c2c4816a544a4049480d84726e, type: 2}
---- !u!114 &7422237869093299377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2554084311231209875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!70 &3496966345647153838
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
