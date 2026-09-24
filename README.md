@@ -22,3 +22,15 @@
 システム関連（github）: https://github.com/wtrinoue/usty_gleap/blob/main/docs/overall.md  
 開発計画スライド（Canva) : https://canva.link/et882xr8diyfgrq  
 素材役割分担ホワイトボード（Canva）: https://canva.link/fbwm8e977e32r6q
+
+# 編集前に…
+隠しファイルをOnにして、「.git/info/exclude」ファイルにて、
+ 
+<img width="642" height="316" alt="image" src="https://github.com/user-attachments/assets/4ed436b8-3771-4b16-a35b-20e4e584c7b4" /> 
+
+
+ 
+*.metaを追加しましょう。 
+こうすると.metaファイルの差分はcommitされますが、編集履歴に表示されなくなります。 
+
+.metaファイルは必要ですが編集できないファイルなので、github desktopでは非表示にすると見やすいです。
