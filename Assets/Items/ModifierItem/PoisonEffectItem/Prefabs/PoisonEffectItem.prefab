@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4097759931101973477
+--- !u!1 &8901826119068415504
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4613153290746512157}
-  - component: {fileID: 4368191466454395947}
-  - component: {fileID: 6140503274831348897}
-  - component: {fileID: 2148473824266684266}
-  - component: {fileID: 1037057942604809429}
-  - component: {fileID: 5977121976864260774}
-  - component: {fileID: 4508577846085703426}
+  - component: {fileID: 7153512811520420402}
+  - component: {fileID: 8990263468216963075}
+  - component: {fileID: 3317469117051257641}
+  - component: {fileID: 1462642443856620555}
   m_Layer: 0
-  m_Name: TemplateBuffItem
+  m_Name: PoisonEffectItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4613153290746512157
+--- !u!4 &7153512811520420402
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
+  m_GameObject: {fileID: 8901826119068415504}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.09, y: 3.19, z: 0}
+  m_LocalPosition: {x: -0.3416, y: 0.73633, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4368191466454395947
+--- !u!212 &8990263468216963075
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
+  m_GameObject: {fileID: 8901826119068415504}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -95,54 +92,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6140503274831348897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: 76d6a9f4f5d59d34abe1f4239b1d62f2, type: 2}
---- !u!114 &2148473824266684266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: fee457a690298de42b305cb8a6c87f24, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 9e3236c2c4816a544a4049480d84726e, type: 2}
---- !u!114 &1037057942604809429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
---- !u!70 &5977121976864260774
+--- !u!70 &3317469117051257641
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
+  m_GameObject: {fileID: 8901826119068415504}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -173,16 +129,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &4508577846085703426
+--- !u!114 &1462642443856620555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097759931101973477}
+  m_GameObject: {fileID: 8901826119068415504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6205ad81345310b40817aae738c39eb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4fc71f5b3b19f48b30ea6d01a25f2b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuffItemBehaviour
-  buffs: []
+  m_EditorClassIdentifier: Assembly-CSharp::PoisonEffectItemBehaviour
+  modifierDefinition: {fileID: 11400000, guid: 732821369d77b3049a34154e71fbec32, type: 2}

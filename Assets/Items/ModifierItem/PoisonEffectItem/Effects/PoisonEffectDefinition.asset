@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e774a65ea2fdbb04fa44284799200306, type: 3}
-  m_Name: EffectItemEffectAction
-  m_EditorClassIdentifier: Assembly-CSharp::EffectAction
-  effects: []
+  m_Script: {fileID: 11500000, guid: 168b11be41f73af4da73aa4f9657fe00, type: 3}
+  m_Name: PoisonEffectDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::ModifierDefinition
+  type: 1
+  duration: 5
+  interval: 0
+  modifiers:
+  - category: 0
+    method: 0
+    value: 1

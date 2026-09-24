@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EffectItemBehaviour : MonoBehaviour
+public class ModifierItem : MonoBehaviour
 {
     [Header("Effect Setting")]
     [SerializeField] private ModifierDefinition modifierDefinition;
