@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7581381904552078402}
   - component: {fileID: 6220544518948902717}
   - component: {fileID: 7969655641607413528}
+  - component: {fileID: 630462144301753568}
   m_Layer: 0
   m_Name: BulletEnemy
   m_TagString: Enemy
@@ -197,3 +198,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
   statusMatrix: {fileID: 11400000, guid: 56d00ffda790de8408c95dc26aeaf8b6, type: 2}
+--- !u!114 &630462144301753568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4556183081519159654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
+  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
+  height: 1
