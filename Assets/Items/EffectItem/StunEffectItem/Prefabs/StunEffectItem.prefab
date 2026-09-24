@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2859585976833128864}
   - component: {fileID: 8326194840808801043}
-  - component: {fileID: 2610314723264762103}
-  - component: {fileID: 4575665792228707059}
-  - component: {fileID: 7348048264754989591}
   - component: {fileID: 3036667667946392514}
   - component: {fileID: 1845359929369578754}
   m_Layer: 0
@@ -95,47 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2610314723264762103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988534786705742881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: c3f61ee904d680444a7e438308370e67, type: 2}
---- !u!114 &4575665792228707059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988534786705742881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: fee457a690298de42b305cb8a6c87f24, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 9e3236c2c4816a544a4049480d84726e, type: 2}
---- !u!114 &7348048264754989591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988534786705742881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!70 &3036667667946392514
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,5 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4fc71f5b3b19f48b30ea6d01a25f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisonEffectItemBehaviour
-  effects:
-  - {fileID: 11400000, guid: bbe0fe6ea2f78ef44adee9ef602b75aa, type: 2}
+  modifierDefinition: {fileID: 11400000, guid: 4cc8667cdc62503469bd9e558a40021d, type: 2}
