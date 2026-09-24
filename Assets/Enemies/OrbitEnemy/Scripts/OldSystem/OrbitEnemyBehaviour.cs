@@ -12,9 +12,7 @@ public class OrbitEnemyBehaviour : MonoBehaviour
     private Transform player;
     private float speed;
     private bool isGameOver = false;
-    private StatusManager statusManager;
-    private StatusActionHolder statusActionHolder;
-    private SelfStatusAction deathAction;
+    private StatusContainer statusContainer;
 
     void Awake()
     {
@@ -37,20 +35,18 @@ public class OrbitEnemyBehaviour : MonoBehaviour
 
     void Start()
     {
-        statusManager = GetComponent<StatusManager>();
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        if (statusActionHolder != null)
-        {
-            deathAction = statusActionHolder.GetSelfStatusActionFromIndex(0);
-        }
+        statusContainer = GetComponent<StatusContainer>();
+        DeadToken dt = new();
+        dt.SetAction(() => { Destroy(gameObject); });
+        statusContainer.ApplyEternalToken(dt);
         SetPlayer();
     }
 
     void Update()
     {
-        if (statusManager != null)
+        if (statusContainer != null)
         {
-            speed = statusManager.GetSpeed();
+            speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
         }
 
         if (player == null || isGameOver)
@@ -65,11 +61,6 @@ public class OrbitEnemyBehaviour : MonoBehaviour
         if (distance > stopDistance)
         {
             transform.position += direction * speed * Time.deltaTime;
-        }
-
-        if (deathAction != null)
-        {
-            deathAction.Execute(this.gameObject);
         }
     }
 
