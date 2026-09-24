@@ -27,7 +27,7 @@ public class BulletEnemyController : MonoBehaviour
 
         InitializeStates();
         DeadToken dt = new DeadToken();
-        dt.SetAction(() => { ChangeState(deadState); });
+        dt.SetAction(() => { ChangeState(deadState); Destroy(gameObject); });
         statusContainer.ApplyEternalToken(dt);
         ChangeState(idleState);
     }
