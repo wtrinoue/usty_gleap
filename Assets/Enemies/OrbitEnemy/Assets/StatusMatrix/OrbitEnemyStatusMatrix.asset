@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: OrbitEnemyStatusMatrix
   m_EditorClassIdentifier: Assembly-CSharp::StatusMatrix
   values:
+  - 5
+  - 0
+  - 0
+  - 2
   - 0
   - 0
   - 0
@@ -21,10 +25,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 2
   - 0
   - 0

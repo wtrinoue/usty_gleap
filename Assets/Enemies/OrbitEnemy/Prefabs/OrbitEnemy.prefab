@@ -48,7 +48,7 @@ MonoBehaviour:
   count: 3
   rotateSpeed: 180
   orbitChildPrefab: {fileID: 4510539143776692414, guid: 2338b3b02eca32b4b92c601362af6db1, type: 3}
-  centerObject: {fileID: 0}
+  centerObject: {fileID: 5008851019340195351}
 --- !u!1 &5008851019340195351
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OrbitEnemyBehaviour
   stopDistance: 1
   orbitCenter: {fileID: 4377661778605982451}
-  orbitCenterPrefab: {fileID: 0}
+  orbitCenterPrefab: {fileID: 5008851019340195351}
 --- !u!61 &2387318294179106541
 BoxCollider2D:
   m_ObjectHideFlags: 0

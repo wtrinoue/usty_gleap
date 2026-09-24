@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletEnemyStatusMatrix
   m_EditorClassIdentifier: Assembly-CSharp::StatusMatrix
   values:
-  - 1
+  - 5
   - 0
   - 0
   - 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 1
+  - 0
   - 0
   - 0
   - 1
