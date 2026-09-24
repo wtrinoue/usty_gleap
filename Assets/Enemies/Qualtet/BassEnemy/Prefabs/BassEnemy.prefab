@@ -10,12 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2552179396936856921}
   - component: {fileID: 6055543962893452864}
-  - component: {fileID: 8384154474034722045}
-  - component: {fileID: 3940417318569482431}
-  - component: {fileID: 3196363013237914323}
   - component: {fileID: 8555620021502423324}
   - component: {fileID: 355633691504884761}
   - component: {fileID: -6978429001898870680}
+  - component: {fileID: -6251962233049621919}
   m_Layer: 0
   m_Name: BassEnemy
   m_TagString: Enemy
@@ -96,48 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8384154474034722045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632551601632496819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions:
-  - {fileID: 11400000, guid: cd44d25c2afef0d4d9bd7d89a60a6fa4, type: 2}
-  targetActions: []
-  generateActions: []
---- !u!114 &3940417318569482431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632551601632496819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 801acb08a7eee01488c4f7b8eeaef4c7, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 138cb64429e8c6142bb6d0aef87fb051, type: 2}
---- !u!114 &3196363013237914323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632551601632496819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!61 &8555620021502423324
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,7 +157,6 @@ MonoBehaviour:
   effectInterval: 0.5
   fireDistance: 0
   effectRadius: 10
-  offsetDistance: 2
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -233,3 +188,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6251962233049621919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632551601632496819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 331096daf33e7574fa945c4a30bbf022, type: 2}

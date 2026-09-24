@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4232480840189345004}
   - component: {fileID: 4775231569081395798}
-  - component: {fileID: 1109258936985041596}
-  - component: {fileID: 3205075097353713746}
-  - component: {fileID: 5220349910780941693}
   - component: {fileID: 3090311540038464926}
+  - component: {fileID: -3540538174519628326}
   - component: {fileID: 6046906405084093645}
   m_Layer: 6
   m_Name: NoteBulletCenter
@@ -96,48 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1109258936985041596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754914063975639587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  generateActions: []
---- !u!114 &3205075097353713746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754914063975639587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: f86676bde8c97654eb1f045eead2e2a8, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 213d789d33c74fe43ab907f66e98df19, type: 2}
---- !u!114 &5220349910780941693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754914063975639587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!114 &3090311540038464926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +107,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteBulletBehaviour
   lifeTimeSeconds: 5
+--- !u!114 &-3540538174519628326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754914063975639587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: e93819af6e02b4342880ed2dba704fe2, type: 2}
 --- !u!50 &6046906405084093645
 Rigidbody2D:
   serializedVersion: 5
@@ -186,14 +155,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4232480840189345004}
     m_Modifications:
-    - target: {fileID: 4296804438830493013, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4296804438830493013, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4296804438830493013, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -238,71 +199,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NoteBullet
       objectReference: {fileID: 0}
-    - target: {fileID: 7244620200799721553, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
+    - target: {fileID: 8224187102012867608, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
+      propertyPath: statusContainer
+      value: 
+      objectReference: {fileID: -3540538174519628326}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7244620200799721553, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8490364030614536240}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
 --- !u!4 &4143917985430067886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4296804438830493013, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
   m_PrefabInstance: {fileID: 154098396875552763}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7397575926993661866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7244620200799721553, guid: 9e03b73f45e126e4b9f028821f952cb5, type: 3}
-  m_PrefabInstance: {fileID: 154098396875552763}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &8490364030614536240
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7397575926993661866}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
