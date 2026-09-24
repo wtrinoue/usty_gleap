@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8651346823837982604}
   - component: {fileID: 4488326946953083771}
-  - component: {fileID: 8857087287389371480}
-  - component: {fileID: 8551838992694737292}
-  - component: {fileID: 4047926306778115750}
   - component: {fileID: 9168372117282727087}
+  - component: {fileID: 4615240423831573066}
   - component: {fileID: 232595535620445303}
   - component: {fileID: 6887727058387388101}
   m_Layer: 0
@@ -96,48 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8857087287389371480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782950914536683864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  generateActions: []
---- !u!114 &8551838992694737292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782950914536683864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 3c89934cf0d27fb4a8694db65ba3e366, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 3f8285c5ff9691145840ac953a848659, type: 2}
---- !u!114 &4047926306778115750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782950914536683864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!114 &9168372117282727087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +107,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletBehaviour
   lifeTimeSeconds: 5
+--- !u!114 &4615240423831573066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782950914536683864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: bfcb029054c853248a69137f29ac1ced, type: 2}
 --- !u!50 &232595535620445303
 Rigidbody2D:
   serializedVersion: 5
