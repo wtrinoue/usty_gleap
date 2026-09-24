@@ -11,12 +11,8 @@ GameObject:
   - component: {fileID: 9003944597478631060}
   - component: {fileID: 1017132997223056676}
   - component: {fileID: 5252164299204437383}
-  - component: {fileID: -5051289020582061209}
-  - component: {fileID: 4213135271297412256}
   - component: {fileID: 8626980723577764319}
   - component: {fileID: 2848304785284285298}
-  - component: {fileID: 1517199709914722575}
-  - component: {fileID: 2961532603016701449}
   - component: {fileID: 5552622525564400355}
   - component: {fileID: 8841449099581828717}
   - component: {fileID: 790223823070352886}
@@ -24,6 +20,7 @@ GameObject:
   - component: {fileID: 7363608004334717130}
   - component: {fileID: 5216692051697576548}
   - component: {fileID: 972227135291899661}
+  - component: {fileID: 2348797617481226562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -150,30 +147,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5051289020582061209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3582109014948741588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2922c055a8b3ea44b13f1a6a3f38fa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
---- !u!114 &4213135271297412256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3582109014948741588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!114 &8626980723577764319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,38 +187,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1517199709914722575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3582109014948741588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: bdbdb79a13b485049834f333fa4282ff, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 6fbca5afa0d61cc40b1362ca8dca29b9, type: 2}
---- !u!114 &2961532603016701449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3582109014948741588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  - {fileID: 11400000, guid: f5d9e77b533b1ed409a1dd896731ff8d, type: 2}
-  - {fileID: 11400000, guid: 2158732e09753644b9911eb9a4ff6590, type: 2}
-  generateActions: []
 --- !u!114 &5552622525564400355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,3 +271,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1865073b4d1ea2848a5474572f134b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XBoxPlayerController
+--- !u!114 &2348797617481226562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582109014948741588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 54e79ca14f6824a4b9a63702e2454e9b, type: 2}

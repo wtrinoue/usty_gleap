@@ -4,12 +4,7 @@ public class PlazmaOrbitBehaviour : MonoBehaviour
 {
     [Header("Effect Settings")]
     [SerializeField] private ModifierDefinition modifierDefinition;
-    private StatusContainer statusContainer;
-
-    void Awake()
-    {
-        statusContainer = GetComponent<StatusContainer>();
-    }
+    [SerializeField] private StatusContainer statusContainer;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
