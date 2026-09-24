@@ -7,7 +7,6 @@ using UnityEngine;
 [RequireComponent(typeof(FollowEnemyMove))]
 [RequireComponent(typeof(FollowEnemyAnimation))]
 [RequireComponent(typeof(StatusContainer))]
-[RequireComponent(typeof(StatusActionHolder))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class FollowEnemyAI : MonoBehaviour, IStateProvider
