@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9171305493903837912}
   - component: {fileID: 8089118680721811680}
   - component: {fileID: 4230709397080682678}
-  - component: {fileID: -594108456859961346}
+  - component: {fileID: 1053311799473181610}
   m_Layer: 0
   m_Name: BombFragment
   m_TagString: Untagged
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BombFragmentBehaviour
   lifeTimeSeconds: 0.3
---- !u!114 &-594108456859961346
+--- !u!114 &1053311799473181610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2564319002652876670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 54e79ca14f6824a4b9a63702e2454e9b, type: 2}
+  statusMatrix: {fileID: 11400000, guid: 2712ef1b990b92046b47af1f925e4294, type: 2}

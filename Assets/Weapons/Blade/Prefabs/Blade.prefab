@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9064199793599507627}
   - component: {fileID: 8884485533075528149}
   - component: {fileID: 8951308859001017632}
-  - component: {fileID: -1724806751643043546}
   - component: {fileID: 7948231859471517762}
+  - component: {fileID: 8351324868277382977}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -120,21 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1c2b543f84cd74d94776683c55813d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BladeBehaviour
-  statusContainer: {fileID: -1724806751643043546}
+  statusContainer: {fileID: 8351324868277382977}
   knockback: {fileID: 8884485533075528149}
---- !u!114 &-1724806751643043546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2659088587549610347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 54e79ca14f6824a4b9a63702e2454e9b, type: 2}
 --- !u!60 &7948231859471517762
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -187,6 +174,19 @@ PolygonCollider2D:
       - {x: 1.9798689, y: -1.9819157}
       - {x: 2.130249, y: -1.2401121}
   m_UseDelaunayMesh: 0
+--- !u!114 &8351324868277382977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659088587549610347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 2712ef1b990b92046b47af1f925e4294, type: 2}
 --- !u!1 &6664515092349404436
 GameObject:
   m_ObjectHideFlags: 0

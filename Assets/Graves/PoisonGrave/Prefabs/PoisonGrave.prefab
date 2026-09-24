@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 475544190454031319}
   - component: {fileID: 784465765187668276}
   - component: {fileID: 2984223814147362481}
-  - component: {fileID: -247653399046670361}
+  - component: {fileID: 6761145945110287452}
   m_Layer: 0
   m_Name: PoisonGrave
   m_TagString: Untagged
@@ -180,8 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gravePoisonController
   effectRadius: 2
-  modifierDefinition: {fileID: 11400000, guid: ef1ee4e8d9b764049886137c2027549f, type: 2}
---- !u!114 &-247653399046670361
+  modifierDefinition: {fileID: 11400000, guid: 7d05c4d0da9ee4d4f83bb858201d73be, type: 2}
+--- !u!114 &6761145945110287452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2541214235751769276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 457002d6bb459404daed4edbce3f541f, type: 2}
+  statusMatrix: {fileID: 11400000, guid: e73f0a1da80407e4bad44433a4afddde, type: 2}

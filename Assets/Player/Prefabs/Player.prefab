@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7363608004334717130}
   - component: {fileID: 5216692051697576548}
   - component: {fileID: 972227135291899661}
-  - component: {fileID: 2348797617481226562}
+  - component: {fileID: 1771281795633505474}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1865073b4d1ea2848a5474572f134b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XBoxPlayerController
---- !u!114 &2348797617481226562
+--- !u!114 &1771281795633505474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3582109014948741588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 54e79ca14f6824a4b9a63702e2454e9b, type: 2}
+  statusMatrix: {fileID: 11400000, guid: 2712ef1b990b92046b47af1f925e4294, type: 2}
