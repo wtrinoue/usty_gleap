@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 168b11be41f73af4da73aa4f9657fe00, type: 3}
-  m_Name: PoisonDefinition
+  m_Name: PowerBuffDefinition
   m_EditorClassIdentifier: Assembly-CSharp::ModifierDefinition
-  type: 1
-  duration: 10
+  type: 0
+  duration: 5
   interval: 0
   modifiers:
-  - category: 0
-    method: 0
+  - category: 1
+    method: 1
     value: 1
