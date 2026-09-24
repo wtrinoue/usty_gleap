@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private StatusManager statusManager;
+    private StatusContainer statusContainer;
     private float speed;
 
     private Vector2 moveInput;
@@ -12,14 +12,14 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        statusManager = GetComponent<StatusManager>();
+        statusContainer = GetComponent<StatusContainer>();
     }
 
     // Update����Ă�
     public void TickMove()
     {
         Vector3 movement = new Vector3(moveInput.x, moveInput.y, 0f);
-        speed = statusManager.GetSpeed();
+        speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
         transform.position += movement * speed * Time.deltaTime;
     }
 }
