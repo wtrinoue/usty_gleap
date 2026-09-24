@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModifierDefinition
   type: 0
   duration: 5
-  interval: 4
+  interval: 0
   modifiers:
   - category: 4
     method: 2

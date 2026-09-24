@@ -50,7 +50,7 @@ public class StatusVector
         }
     }
 
-    private void InitializeDefaults()
+    public void InitializeDefaults()
     {
         for (int c = 0; c < (int)StatusCategory.Count; c++)
         {
@@ -116,6 +116,7 @@ public class StatusVector
     {
         var result = new StatusVector(this);
         result.Merge(vector);
+        result.Validate();
         return result;
     }
 
