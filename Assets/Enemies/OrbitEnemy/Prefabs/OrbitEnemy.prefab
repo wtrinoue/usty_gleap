@@ -62,9 +62,7 @@ GameObject:
   - component: {fileID: 6144654204669979918}
   - component: {fileID: 2387318294179106541}
   - component: {fileID: 6595756345928504619}
-  - component: {fileID: 7892622743518281152}
-  - component: {fileID: 4024679568161430632}
-  - component: {fileID: 5739292512603554619}
+  - component: {fileID: -9173379437978882449}
   m_Layer: 0
   m_Name: OrbitEnemy
   m_TagString: Enemy
@@ -234,7 +232,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7892622743518281152
+--- !u!114 &-9173379437978882449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,36 +241,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5008851019340195351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
---- !u!114 &4024679568161430632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008851019340195351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions:
-  - {fileID: 11400000, guid: cd44d25c2afef0d4d9bd7d89a60a6fa4, type: 2}
-  targetActions: []
-  generateActions: []
---- !u!114 &5739292512603554619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008851019340195351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 3f4339dd5cc85854caa3d43e5fe76eb4, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: c1042dfe0ff48a946a1e6660f8690fac, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: d90b4421fcba86c4e93eb29b5b644ac5, type: 2}
