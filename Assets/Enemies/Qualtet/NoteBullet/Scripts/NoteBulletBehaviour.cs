@@ -3,9 +3,7 @@ using UnityEngine;
 public class NoteBulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float lifeTimeSeconds = 5f; // 生存時間（秒）
-    private StatusActionHolder statusActionHolder;
-    private StatusManager statusManager;
-    private TargetStatusAction attackAction;
+    private StatusContainer statusContainer;
     private Rigidbody2D rb;
     private float lifeTimer;
     private bool isDestroyed;
@@ -21,10 +19,8 @@ public class NoteBulletBehaviour : MonoBehaviour
 
     void Awake()
     {
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        statusManager = GetComponent<StatusManager>();
+        statusContainer = GetComponent<StatusContainer>();
         rb = GetComponent<Rigidbody2D>();
-        attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
 
         // 寿命カウントをコルーチンで開始
         StartCoroutine(LifeTimeRoutine());
@@ -46,11 +42,16 @@ public class NoteBulletBehaviour : MonoBehaviour
 
         // ②Enemyのオブジェクトにぶつかったときに、ダメージを与えてから消滅
         if (collision.CompareTag("Enemy") &&
-            collision.TryGetComponent<IHasStatusManager>(out var hasStatus))
+            collision.TryGetComponent<StatusContainer>(out var hasSC))
         {
             // AttackActionを用いて攻撃
-            attackAction.Execute(this.gameObject, collision.gameObject);
-            
+            DamageToken dt = new();
+            dt.ExtractStatus(statusContainer.GetStatus());
+
+            // 相手のStatusContainerに登録
+            hasSC.ApplyOneTimeToken(dt);
+
+
             // Bullet自身を破壊
             DestroyBullet();
         }
