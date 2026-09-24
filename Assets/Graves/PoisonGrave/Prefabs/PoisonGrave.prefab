@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 3092423030798216249}
   - component: {fileID: 475544190454031319}
   - component: {fileID: 784465765187668276}
-  - component: {fileID: 5036210692778223681}
-  - component: {fileID: 3384903763175153911}
-  - component: {fileID: -4508385274668107327}
   - component: {fileID: 2984223814147362481}
+  - component: {fileID: -247653399046670361}
   m_Layer: 0
   m_Name: PoisonGrave
   m_TagString: Untagged
@@ -169,48 +167,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5036210692778223681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2541214235751769276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
---- !u!114 &3384903763175153911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2541214235751769276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: 2643c20fadad22e488907fd022252da7, type: 2}
-  generateActions: []
---- !u!114 &-4508385274668107327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2541214235751769276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 7765d32ab10fb764fa00626023466220, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 71167a8288fd48a46a346ab8cad49cb9, type: 2}
 --- !u!114 &2984223814147362481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,4 +180,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gravePoisonController
   effectRadius: 2
-  poisonEffect: {fileID: 11400000, guid: fc1c6397b0dbc664b97d21666865daa0, type: 2}
+  modifierDefinition: {fileID: 11400000, guid: ef1ee4e8d9b764049886137c2027549f, type: 2}
+--- !u!114 &-247653399046670361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2541214235751769276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 457002d6bb459404daed4edbce3f541f, type: 2}
