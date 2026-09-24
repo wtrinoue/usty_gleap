@@ -1,28 +1,24 @@
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class AttackOrbitBehaviour : MonoBehaviour
 {
-    private StatusActionHolder _statusActionHolder;
-    private TargetStatusAction _attackAction;
+    [SerializeField] private StatusContainer statusContainer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        _statusActionHolder = GetComponent<StatusActionHolder>();
-        _attackAction = _statusActionHolder.GetTargetStatusActionFromIndex(0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        statusContainer = GetComponent<StatusContainer>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            GameObject enemy = collision.gameObject;
-            _attackAction.Execute(this.gameObject,enemy);
+            StatusContainer enemySC = collision.gameObject.GetComponent<StatusContainer>();
+            if (enemySC == null) return;
+            DamageToken dt = new();
+            dt.ExtractStatus(statusContainer.GetStatus());
+            enemySC.ApplyOneTimeToken(dt);
         }
     }
 }
