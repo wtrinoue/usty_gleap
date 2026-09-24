@@ -10,11 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7531542995853156260}
   - component: {fileID: 9064199793599507627}
-  - component: {fileID: 5407941960306502839}
-  - component: {fileID: 7479891497559769827}
-  - component: {fileID: 8887438362823366611}
   - component: {fileID: 8884485533075528149}
   - component: {fileID: 8951308859001017632}
+  - component: {fileID: -1724806751643043546}
   - component: {fileID: 7948231859471517762}
   m_Layer: 0
   m_Name: Blade
@@ -97,48 +95,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5407941960306502839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2659088587549610347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  generateActions: []
---- !u!114 &7479891497559769827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2659088587549610347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: bdbdb79a13b485049834f333fa4282ff, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 21a8a0b7b1c8a27438efe68bbc3d6248, type: 2}
---- !u!114 &8887438362823366611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2659088587549610347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!114 &8884485533075528149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +120,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1c2b543f84cd74d94776683c55813d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BladeBehaviour
+  statusContainer: {fileID: -1724806751643043546}
+  knockback: {fileID: 8884485533075528149}
+--- !u!114 &-1724806751643043546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659088587549610347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 54e79ca14f6824a4b9a63702e2454e9b, type: 2}
 --- !u!60 &7948231859471517762
 PolygonCollider2D:
   m_ObjectHideFlags: 0
