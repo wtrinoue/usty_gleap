@@ -10,8 +10,7 @@ public class FollowEnemyController : MonoBehaviour
 
     private float pastHp = 11f;
 
-    private StatusManager statusManager;
-    private StatusActionHolder statusActionHolder;
+    private StatusContainer statusContainer;
     private FollowEnemyAnimation animation;
 
     // 状態管理
@@ -24,13 +23,17 @@ public class FollowEnemyController : MonoBehaviour
 
     void Start()
     {
-        statusManager = GetComponent<StatusManager>();
-        statusActionHolder = GetComponent<StatusActionHolder>();
+        statusContainer = GetComponent<StatusContainer>();
         animation = GetComponent<FollowEnemyAnimation>();
         player = PlayerManager.Instance.CurrentPlayer;
 
         // 各状態を初期化
         InitializeStates();
+
+        // 死んだときを感知するToken
+        DeadToken deadToken = new();
+        deadToken.SetAction(() => { ChangeState(deadState); });
+        statusContainer.ApplyEternalToken(deadToken);
 
         // 初期状態を設定
         ChangeState(idleState);
@@ -39,10 +42,10 @@ public class FollowEnemyController : MonoBehaviour
     private void InitializeStates()
     {
         idleState = new FollowEnemyIdleState(this, animation);
-        moveState = new FollowEnemyMoveState(this, statusManager, animation, transform, stopDistance);
-        hurtState = new FollowEnemyHurtState(this, animation, statusManager);
+        moveState = new FollowEnemyMoveState(this, statusContainer, animation, transform, stopDistance);
+        hurtState = new FollowEnemyHurtState(this, animation);
         deadState = new FollowEnemyDeadState(animation, gameObject);
-        attackState = new FollowEnemyAttackState(this, animation, statusActionHolder);
+        attackState = new FollowEnemyAttackState(this, animation, statusContainer);
     }
 
     void Update()
@@ -55,7 +58,6 @@ public class FollowEnemyController : MonoBehaviour
         }
 
         // 状態確認と遷移処理
-        CheckDeath();
         CheckHurt();
         CheckMove();
 
@@ -66,7 +68,7 @@ public class FollowEnemyController : MonoBehaviour
     private void CheckMove()
     {
         // 移動可能かつ移動状態以外の場合、移動状態に遷移
-        if (!(currentState is FollowEnemyMoveState) && 
+        if (!(currentState is FollowEnemyMoveState) &&
             !(currentState is FollowEnemyDeadState) &&
             !(currentState is FollowEnemyAttackState))
         {
@@ -74,21 +76,12 @@ public class FollowEnemyController : MonoBehaviour
         }
     }
 
-    private void CheckDeath()
-    {
-        float currentHp = statusManager.BaseStatus.CurrentHP;
-
-        if (currentHp > 0) return;
-
-        ChangeState(deadState);
-    }
 
     private void CheckHurt()
     {
         if (currentState is FollowEnemyDeadState) return;
 
-        float currentHp = statusManager.BaseStatus.CurrentHP;
-
+        float currentHp = statusContainer.GetStatus().Calculate(StatusCategory.HP);
         if (currentHp >= pastHp) return;
 
         pastHp = currentHp;

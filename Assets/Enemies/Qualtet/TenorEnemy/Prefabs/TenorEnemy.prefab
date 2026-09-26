@@ -10,12 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8921736307179283945}
   - component: {fileID: 4065967624357799067}
-  - component: {fileID: 8593894829369756156}
-  - component: {fileID: 5537764444115440471}
-  - component: {fileID: 526153745303459447}
   - component: {fileID: 3670712500075991088}
   - component: {fileID: -4232253130993467613}
   - component: {fileID: 4818791234092618162}
+  - component: {fileID: 7198913552878203112}
   m_Layer: 0
   m_Name: TenorEnemy
   m_TagString: Enemy
@@ -96,48 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8593894829369756156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691326590247667088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions:
-  - {fileID: 11400000, guid: cd44d25c2afef0d4d9bd7d89a60a6fa4, type: 2}
-  targetActions: []
-  generateActions: []
---- !u!114 &5537764444115440471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691326590247667088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 7aabaf86717e04a4cb26e0bf4f7e5c0d, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 6f10cb711e4b4e041b5f7700441184f8, type: 2}
---- !u!114 &526153745303459447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691326590247667088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!61 &3670712500075991088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,7 +157,6 @@ MonoBehaviour:
   effectInterval: 0.5
   fireDistance: 0
   effectRadius: 10
-  offsetDistance: -2
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -233,3 +188,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7198913552878203112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691326590247667088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 5b24105945f0f1648b1baeba8824f684, type: 2}

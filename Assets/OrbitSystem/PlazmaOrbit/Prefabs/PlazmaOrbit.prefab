@@ -11,12 +11,10 @@ GameObject:
   - component: {fileID: 915582415863542485}
   - component: {fileID: 979031250419641199}
   - component: {fileID: 1995136455830063856}
-  - component: {fileID: 916817456904842741}
-  - component: {fileID: 47939549968819051}
-  - component: {fileID: 283048270948551786}
   - component: {fileID: 5477872408511448088}
   - component: {fileID: 7791809887306708269}
   - component: {fileID: -3072689187732918235}
+  - component: {fileID: 6828189171089909657}
   m_Layer: 0
   m_Name: PlazmaOrbit
   m_TagString: Untagged
@@ -95,48 +93,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &916817456904842741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3706849120274916178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  generateActions: []
---- !u!114 &47939549968819051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3706849120274916178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: cbf46e1e7d297a348b378fe7873c800e, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 3026d06d1ff6acc4caffd16cb5a7e96f, type: 2}
---- !u!114 &283048270948551786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3706849120274916178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!58 &5477872408511448088
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,4 +168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31701413a9ee9a246b6cdb779ce21513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlazmaOrbitBehaviour
-  stunEffect: {fileID: 11400000, guid: 8d5708dd6857fdf4894ab3a1a9ce1509, type: 2}
+  modifierDefinition: {fileID: 11400000, guid: 96cb9f69ec95a694192eada14d9f51a5, type: 2}
+  statusContainer: {fileID: 6828189171089909657}
+--- !u!114 &6828189171089909657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706849120274916178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 6ca6e218ee5f79b4c820728cbb89116c, type: 2}

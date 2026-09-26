@@ -4,8 +4,8 @@ public class SinNoteBulletBehaviour : MonoBehaviour
 {
     public float amplitude = 0.5f;   // 振動の大きさ
     public float frequency = 5f;     // 振動スピード
-    private StatusActionHolder statusActionHolder;
-    private TargetStatusAction attackAction;
+
+    public StatusContainer statusContainer;
     private NoteBulletBehaviour parent;
 
     private Vector3 baseLocalPos;
@@ -13,9 +13,7 @@ public class SinNoteBulletBehaviour : MonoBehaviour
 
     void Start()
     {
-        // status関連を取得
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
+        statusContainer = GetComponent<StatusContainer>();
         // 親を核とした基準位置を保存
         baseLocalPos = transform.localPosition;
         // 最初の大きさを保存
@@ -34,7 +32,12 @@ public class SinNoteBulletBehaviour : MonoBehaviour
         //プレイヤーとぶつかったら
         if (collision.gameObject.CompareTag("Player"))
         {
-            attackAction.Execute(gameObject, collision.gameObject);
+            StatusContainer playerSC = collision.gameObject.GetComponent<StatusContainer>();
+            if (playerSC == null) return;
+            DamageToken dt = new();
+            dt.ExtractStatus(statusContainer.GetStatus());
+            playerSC.ApplyOneTimeToken(dt);
+
             parent.DestroyBullet();
         }
     }

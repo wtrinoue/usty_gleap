@@ -18,11 +18,11 @@ public class damageMonoBehaviour : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("衝突しました！！");
-        ModifierManager mm = collision.gameObject.GetComponent<ModifierManager>();
+        StatusContainer mm = collision.gameObject.GetComponent<StatusContainer>();
         if (mm == null) return;
         Debug.Log("ダメージが入りました！");
         DamageToken damageToken = new DamageToken();
-        damageToken.ExtractStatus(gameObject.GetComponent<ModifierManager>().GetStatus()); // 自分の補正適用済みのステータスを入れる。
+        damageToken.ExtractStatus(gameObject.GetComponent<StatusContainer>().GetStatus()); // 自分の補正適用済みのステータスを入れる。
         damageToken.SetAction(() => { });
         mm.ApplyOneTimeToken(damageToken);
     }

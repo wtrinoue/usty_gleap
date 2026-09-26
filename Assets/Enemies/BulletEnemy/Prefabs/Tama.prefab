@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 1416930238414039085}
   - component: {fileID: 6409338804917791157}
   - component: {fileID: 297789100835756533}
-  - component: {fileID: 5309467983569600577}
-  - component: {fileID: 1837286779701111740}
+  - component: {fileID: 5381907374587481400}
   m_Layer: 0
   m_Name: Tama
   m_TagString: Untagged
@@ -171,7 +170,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &5309467983569600577
+--- !u!114 &5381907374587481400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,21 +179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5882308550730602386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
---- !u!114 &1837286779701111740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5882308550730602386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions: []
-  generateActions: []
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 3eeec02852b786e4ca9d465625a25bba, type: 2}

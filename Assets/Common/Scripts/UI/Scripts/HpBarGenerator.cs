@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-[RequireComponent(typeof(StatusManager))]
+[RequireComponent(typeof(StatusContainer))]
 public class HpBarGenerator : MonoBehaviour
 {
 

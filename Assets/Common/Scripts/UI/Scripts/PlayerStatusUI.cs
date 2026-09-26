@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerStatusUI : MonoBehaviour
 {
     [Header("Status Manager Reference")]
-    [SerializeField] private StatusManager _playerStatusManager;
+    [SerializeField] private StatusContainer _playerStatusContainer;
 
     [Header("UI Text References")]
     [SerializeField] private TextMeshProUGUI _hpText;
@@ -19,24 +20,24 @@ public class PlayerStatusUI : MonoBehaviour
 
     private void UpdateStatusDisplay()
     {
-        if (_playerStatusManager == null) return;
+        if (_playerStatusContainer == null) return;
 
         // BaseStatusから現在の値を取得
-        BaseStatus baseStatus = _playerStatusManager.BaseStatus;
-        
+        float currentHP = _playerStatusContainer.GetStatus().Get(StatusCategory.HP, StatusMethod.Base);
+
         // HPの表示（現在HP / 最大HP）
-        float maxHP = _playerStatusManager.BaseStatus.CurrentHP; // 初期値がmaxHPとして使用されている
-        _hpText.text = $"HP: {baseStatus.CurrentHP:F0}";
+        float maxHP = _playerStatusContainer.statusMatrix.Get(StatusCategory.HP, StatusMethod.Base); // 初期値がmaxHPとして使用されている
+        _hpText.text = $"HP: {currentHP:F0}";
 
         // 攻撃力の表示（バフ適用後）
-        float attackPower = _playerStatusManager.GetAttackPower();
+        float attackPower = _playerStatusContainer.GetStatus().Calculate(StatusCategory.Attack);
         _attackText.text = $"ATK: {attackPower:F1}";
 
         // 速度の表示（バフ適用後）
-        float speed = _playerStatusManager.GetSpeed();
+        float speed = _playerStatusContainer.GetStatus().Calculate(StatusCategory.Speed);
         _speedText.text = $"SPD: {speed:F1}";
 
         // 防御力の表示
-        _defenseText.text = $"DEF: {baseStatus.BaseDefense:F1}";
+        _defenseText.text = $"DEF: {currentHP:F1}";
     }
 }

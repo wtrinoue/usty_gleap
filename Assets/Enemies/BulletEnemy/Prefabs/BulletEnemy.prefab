@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 3814779318188031301}
   - component: {fileID: 3352059043582380894}
   - component: {fileID: 7581381904552078402}
-  - component: {fileID: 1287247015686621944}
-  - component: {fileID: 230868669032183259}
-  - component: {fileID: 3124690390612243247}
-  - component: {fileID: 823889822459979747}
+  - component: {fileID: 6220544518948902717}
+  - component: {fileID: 630462144301753568}
+  - component: {fileID: 3231201955087971509}
   m_Layer: 0
   m_Name: BulletEnemy
   m_TagString: Enemy
@@ -169,7 +168,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1287247015686621944
+--- !u!114 &6220544518948902717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,53 +177,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 4556183081519159654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c6906fce7a5ad942b496757502eda23, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
---- !u!114 &230868669032183259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556183081519159654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions:
-  - {fileID: 11400000, guid: cd44d25c2afef0d4d9bd7d89a60a6fa4, type: 2}
-  targetActions: []
-  generateActions: []
---- !u!114 &3124690390612243247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556183081519159654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: dae9a73df19141249be911988ee9d0d5, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: a63934fd4b7dfe245b6ce6f324a79c53, type: 2}
---- !u!114 &823889822459979747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556183081519159654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1e322345f358f40a08e6a8da0de40c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletEnemyBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::BulletEnemyController
   stopDistance: 1
-  bulletPrefab: {fileID: 3782950914536683864, guid: b7c2a1d4e5f69788aabbccddeeff0011, type: 3}
+  bulletPrefab: {fileID: 5882308550730602386, guid: 6b63dac801bbb9e41a49331686173ac6, type: 3}
   shotInterval: 1
   fireDistance: 5
   spawnOffset: 0.5
+--- !u!114 &630462144301753568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4556183081519159654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
+  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
+  height: 1
+--- !u!114 &3231201955087971509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4556183081519159654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 3eeec02852b786e4ca9d465625a25bba, type: 2}

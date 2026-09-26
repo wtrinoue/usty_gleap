@@ -13,9 +13,7 @@ public class BulletEnemyController : MonoBehaviour
 
     private Transform player;
     private bool isGameOver = false;
-    private StatusManager statusManager;
-    private StatusActionHolder statusActionHolder;
-    private SelfStatusAction deathAction;
+    private StatusContainer statusContainer;
     private float lastShotTime = -999f;
 
     private IEnemyState currentState;
@@ -25,28 +23,22 @@ public class BulletEnemyController : MonoBehaviour
 
     protected virtual void Start()
     {
-        statusManager = GetComponent<StatusManager>();
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        if (statusActionHolder != null)
-        {
-            deathAction = statusActionHolder.GetSelfStatusActionFromIndex(0);
-        }
+        statusContainer = GetComponent<StatusContainer>();
 
         InitializeStates();
+        DeadToken dt = new DeadToken();
+        dt.SetAction(() => { ChangeState(deadState); Destroy(gameObject); });
+        statusContainer.ApplyEternalToken(dt);
         ChangeState(idleState);
     }
 
     protected virtual void Update()
     {
-        ExecuteDeathAction();
-
         if (currentState is BulletEnemyDeadState)
         {
             currentState.Update();
             return;
         }
-
-        CheckDeath();
         currentState.Update();
     }
 
@@ -73,21 +65,6 @@ public class BulletEnemyController : MonoBehaviour
         deadState = new BulletEnemyDeadState();
     }
 
-    private void CheckDeath()
-    {
-        if (currentState is BulletEnemyDeadState) return;
-        if (statusManager == null || statusManager.BaseStatus == null) return;
-        if (statusManager.BaseStatus.CurrentHP > 0f) return;
-
-        ChangeState(deadState);
-    }
-
-    private void ExecuteDeathAction()
-    {
-        if (deathAction == null) return;
-        deathAction.Execute(this.gameObject);
-    }
-
     public bool TryGetPlayer(out Transform target)
     {
         target = player;
@@ -108,9 +85,9 @@ public class BulletEnemyController : MonoBehaviour
 
     public void MoveTowards(Transform target)
     {
-        if (target == null || statusManager == null) return;
+        if (target == null || statusContainer == null) return;
 
-        float speed = statusManager.GetSpeed();
+        float speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
         Vector3 direction = (target.position - transform.position).normalized;
         float distance = Vector3.Distance(target.position, transform.position);
 

@@ -48,7 +48,7 @@ MonoBehaviour:
   count: 3
   rotateSpeed: 180
   orbitChildPrefab: {fileID: 4510539143776692414, guid: 2338b3b02eca32b4b92c601362af6db1, type: 3}
-  centerObject: {fileID: 0}
+  centerObject: {fileID: 5008851019340195351}
 --- !u!1 &5008851019340195351
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,9 +62,8 @@ GameObject:
   - component: {fileID: 6144654204669979918}
   - component: {fileID: 2387318294179106541}
   - component: {fileID: 6595756345928504619}
-  - component: {fileID: 7892622743518281152}
-  - component: {fileID: 4024679568161430632}
-  - component: {fileID: 5739292512603554619}
+  - component: {fileID: 8333785238210139404}
+  - component: {fileID: 8631676860385708363}
   m_Layer: 0
   m_Name: OrbitEnemy
   m_TagString: Enemy
@@ -160,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OrbitEnemyBehaviour
   stopDistance: 1
   orbitCenter: {fileID: 4377661778605982451}
-  orbitCenterPrefab: {fileID: 0}
+  orbitCenterPrefab: {fileID: 5008851019340195351}
 --- !u!61 &2387318294179106541
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -234,7 +233,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7892622743518281152
+--- !u!114 &8333785238210139404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,10 +242,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5008851019340195351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
+  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
---- !u!114 &4024679568161430632
+  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
+  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
+  height: 1
+--- !u!114 &8631676860385708363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,24 +256,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5008851019340195351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions:
-  - {fileID: 11400000, guid: cd44d25c2afef0d4d9bd7d89a60a6fa4, type: 2}
-  targetActions: []
-  generateActions: []
---- !u!114 &5739292512603554619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008851019340195351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 3f4339dd5cc85854caa3d43e5fe76eb4, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: c1042dfe0ff48a946a1e6660f8690fac, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: e0c965c957efac648b870870adb0d52c, type: 2}

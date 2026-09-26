@@ -72,6 +72,7 @@ public class ModifierContainer
     // Buffを計算して返すところ（Buffは一時的なものなのでbuffResultにまとめている。インターバルのリセットも担う。）
     public StatusVector CalculateBuff()
     {
+        buffResult.InitializeDefaults();
 
         foreach (var modifier in buffs.Values)
         {

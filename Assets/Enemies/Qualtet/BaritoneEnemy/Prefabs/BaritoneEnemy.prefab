@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8968827258935248908}
   - component: {fileID: 8100571852955738200}
-  - component: {fileID: 2918714752106255525}
-  - component: {fileID: 8590829762242411597}
-  - component: {fileID: 3616434848728878026}
   - component: {fileID: 3347150380055331424}
+  - component: {fileID: -6161317724258732530}
   - component: {fileID: 770202364362623640}
   - component: {fileID: -5874778582813467008}
   m_Layer: 0
@@ -96,48 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2918714752106255525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215849105629894277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions:
-  - {fileID: 11400000, guid: cd44d25c2afef0d4d9bd7d89a60a6fa4, type: 2}
-  targetActions: []
-  generateActions: []
---- !u!114 &8590829762242411597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215849105629894277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 4c162fddcb2b7ed49a86ec1a83d6ff09, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: 49b1e6187d115ba42bc1292d09ad31bf, type: 2}
---- !u!114 &3616434848728878026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215849105629894277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!61 &3347150380055331424
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,6 +140,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6161317724258732530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215849105629894277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 9786d4fea99174c4e9b5074c9359dbdd, type: 2}
 --- !u!114 &770202364362623640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +170,6 @@ MonoBehaviour:
   effectInterval: 0.5
   fireDistance: 0
   effectRadius: 10
-  offsetDistance: 4
   targetLayer:
     serializedVersion: 2
     m_Bits: 64

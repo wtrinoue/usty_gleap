@@ -6,16 +6,14 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(FollowEnemyMove))]
 [RequireComponent(typeof(FollowEnemyAnimation))]
-[RequireComponent(typeof(StatusManager))]
-[RequireComponent(typeof(StatusActionHolder))]
+[RequireComponent(typeof(StatusContainer))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class FollowEnemyAI : MonoBehaviour, IStateProvider
 {
     [SerializeField] private FollowEnemyMove moveComponent;
     [SerializeField] private FollowEnemyAnimation animationComponent;
-    [SerializeField] private StatusManager statusManager;
-    [SerializeField] private StatusActionHolder statusActionHolder;
+    [SerializeField] private StatusContainer statusContainer;
     [SerializeField] private float stopDistance = 1f;
     [SerializeField] private string playerTag = "Player";
 
@@ -132,17 +130,17 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
 
     private void CheckDeath()
     {
-        if (statusManager == null || statusManager.BaseStatus == null) return;
-        if (statusManager.BaseStatus.CurrentHP > 0f) return;
+        if (statusContainer == null || statusContainer.statusMatrix == null) return;
+        if (statusContainer.GetStatus().Get(StatusCategory.HP, StatusMethod.Base) > 0f) return;
 
         currentState = FolloEnemyState.dead;
     }
 
     private void CheckHurt()
     {
-        if (statusManager == null || statusManager.BaseStatus == null) return;
+        if (statusContainer == null || statusContainer.statusMatrix == null) return;
 
-        float currentHp = statusManager.BaseStatus.CurrentHP;
+        float currentHp = statusContainer.GetStatus().Get(StatusCategory.HP, StatusMethod.Base);
         if (currentHp >= pastHp) return;
 
         pastHp = currentHp;
@@ -200,7 +198,7 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
         if (distance > stopDistance)
         {
             animationComponent?.Run();
-            float speed = statusManager != null ? statusManager.GetSpeed() : 0f;
+            float speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
             transform.position += direction * speed * Time.deltaTime;
             return;
         }
@@ -224,10 +222,11 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
 
         if (attackTimer < AttackDuration) return;
 
-        if (attackTarget != null && statusActionHolder != null)
+        if (attackTarget != null)
         {
-            TargetStatusAction attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
-            attackAction?.Execute(gameObject, attackTarget);
+            DamageToken damageToken = new();
+            damageToken.ExtractStatus(statusContainer.GetStatus());
+            attackTarget.GetComponent<StatusContainer>().ApplyOneTimeToken(damageToken);
         }
 
         currentState = FolloEnemyState.move;
@@ -246,9 +245,9 @@ public class FollowEnemyAI : MonoBehaviour, IStateProvider
     private void InitializeHpCache()
     {
         if (hasHpCache) return;
-        if (statusManager == null || statusManager.BaseStatus == null) return;
+        if (statusContainer == null || statusContainer.statusMatrix == null) return;
 
-        pastHp = statusManager.BaseStatus.CurrentHP;
+        pastHp = statusContainer.GetStatus().Get(StatusCategory.HP, StatusMethod.Base);
         hasHpCache = true;
     }
 

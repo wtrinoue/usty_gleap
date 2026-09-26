@@ -10,12 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6005803492311824541}
   - component: {fileID: 6046821961563193403}
-  - component: {fileID: 5439898554349432843}
-  - component: {fileID: 6107070414751870484}
-  - component: {fileID: 4135529183660678702}
   - component: {fileID: 5500841474856200167}
   - component: {fileID: 2194789201514811803}
   - component: {fileID: 5010154486148565440}
+  - component: {fileID: 7867247355338443749}
   m_Layer: 0
   m_Name: BulletForWeapon
   m_TagString: Untagged
@@ -97,48 +95,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5439898554349432843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906134888238357954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  generateActions: []
---- !u!114 &6107070414751870484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906134888238357954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: bdbdb79a13b485049834f333fa4282ff, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: f8c5e1d359d093e49bd678ec9ab07075, type: 2}
---- !u!114 &4135529183660678702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906134888238357954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!50 &5500841474856200167
 Rigidbody2D:
   serializedVersion: 5
@@ -225,6 +181,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletForWeaponBehaviour
   lifeTimeSeconds: 3
+--- !u!114 &7867247355338443749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906134888238357954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 2712ef1b990b92046b47af1f925e4294, type: 2}
 --- !u!1 &1833073592143185702
 GameObject:
   m_ObjectHideFlags: 0

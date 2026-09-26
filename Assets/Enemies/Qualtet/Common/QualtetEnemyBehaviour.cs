@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Xml;
 using UnityEngine;
 
 public abstract class QualtetEnemyBehaviour : MonoBehaviour
@@ -13,9 +14,7 @@ public abstract class QualtetEnemyBehaviour : MonoBehaviour
 
     private Transform player;
     private float speed;
-    private StatusManager statusManager;
-    private StatusActionHolder statusActionHolder;
-    private SelfStatusAction deathAction;
+    private StatusContainer statusContainer;
     private Coroutine shotRoutine;
     private Coroutine effectRoutine;
     private IQualtetEnemyRole role;
@@ -31,19 +30,18 @@ public abstract class QualtetEnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        statusManager = GetComponent<StatusManager>();
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        deathAction = statusActionHolder.GetSelfStatusActionFromIndex(0);
+        statusContainer = GetComponent<StatusContainer>();
         player = GameObject.FindWithTag("Player")?.transform;
         effectRoutine = StartCoroutine(ApplyEffectLoop());
         shotRoutine = StartCoroutine(ShotLoop());
+        DeadToken dt = new();
+        dt.SetAction(() => { Destroy(gameObject); });
     }
 
     protected virtual void Update()
     {
         Move();
         LookAtPlayer();
-        deathAction.Execute(this.gameObject);
     }
 
     private void OnDestroy()
@@ -53,7 +51,7 @@ public abstract class QualtetEnemyBehaviour : MonoBehaviour
 
     private void Move()
     {
-        speed = statusManager.GetSpeed();
+        speed = statusContainer.GetStatus().Calculate(StatusCategory.Speed);
         Vector2 targetPoint = role.GetTargetPoint();
         Vector3 direction = CalculateMoveDirection(transform.position, targetPoint);
         float distance = Vector2.Distance(player.position, transform.position);
