@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gravePoisonController
   effectRadius: 2
-  modifierDefinition: {fileID: 11400000, guid: 7d05c4d0da9ee4d4f83bb858201d73be, type: 2}
+  modifierDefinition: {fileID: 11400000, guid: cc5d94bdf40eba04c9ff830d3c169965, type: 2}
 --- !u!114 &6414177819442626183
 MonoBehaviour:
   m_ObjectHideFlags: 0
