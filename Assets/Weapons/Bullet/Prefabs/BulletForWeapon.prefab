@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5500841474856200167}
   - component: {fileID: 2194789201514811803}
   - component: {fileID: 5010154486148565440}
-  - component: {fileID: 7867247355338443749}
+  - component: {fileID: 4289013495786103539}
   m_Layer: 0
   m_Name: BulletForWeapon
   m_TagString: Untagged
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletForWeaponBehaviour
   lifeTimeSeconds: 3
---- !u!114 &7867247355338443749
+--- !u!114 &4289013495786103539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,10 +190,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 906134888238357954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 2712ef1b990b92046b47af1f925e4294, type: 2}
+  statusMatrix: {fileID: 11400000, guid: a8d196aca4fe9934090db60a3eb709a2, type: 2}
 --- !u!1 &1833073592143185702
 GameObject:
   m_ObjectHideFlags: 0

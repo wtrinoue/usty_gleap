@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3209504465877603047}
   - component: {fileID: 5213332794249128866}
   - component: {fileID: -1884009875908864199}
-  - component: {fileID: -145081697637767702}
+  - component: {fileID: 8288207832675706930}
   m_Layer: 7
   m_Name: LeadEnemy
   m_TagString: Enemy
@@ -191,7 +191,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-145081697637767702
+--- !u!114 &8288207832675706930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,10 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8234122525895729124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 750b5867023581748a2d43a64e94b447, type: 2}
+  statusMatrix: {fileID: 11400000, guid: 5d3205f0c796f194baff82caf39b6fb9, type: 2}
 --- !u!1001 &1085412066226269352
 PrefabInstance:
   m_ObjectHideFlags: 0

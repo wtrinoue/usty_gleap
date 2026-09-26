@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9168372117282727087}
   - component: {fileID: 232595535620445303}
   - component: {fileID: 6887727058387388101}
-  - component: {fileID: 7554075227961348211}
+  - component: {fileID: 1078675668142897371}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -180,7 +180,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7554075227961348211
+--- !u!114 &1078675668142897371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3782950914536683864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 57aa4d3646febf141936be8a7d028b99, type: 2}
+  statusMatrix: {fileID: 11400000, guid: b449476f6deda9f4fb32c9d96455d378, type: 2}

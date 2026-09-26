@@ -208,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4556183081519159654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 3eeec02852b786e4ca9d465625a25bba, type: 2}
+  statusMatrix: {fileID: 11400000, guid: efb62af3d28d7714db550b6e47b133a3, type: 2}

@@ -131,8 +131,9 @@ GameObject:
   - component: {fileID: 142368184}
   - component: {fileID: 142368186}
   - component: {fileID: 142368187}
-  - component: {fileID: 142368188}
   - component: {fileID: 142368189}
+  - component: {fileID: 142368190}
+  - component: {fileID: 142368191}
   m_Layer: 0
   m_Name: receiver
   m_TagString: Untagged
@@ -286,19 +287,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &142368188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142368183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModifierManager
-  statusMatrix: {fileID: 11400000, guid: 5f3d4c5a93e8e0247b2e7e8ff88638f5, type: 2}
 --- !u!114 &142368189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +299,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412b3ebcdaf99aa45baa147236b0bab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::receiverMonoBehaviour
+--- !u!114 &142368190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142368183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 5f3d4c5a93e8e0247b2e7e8ff88638f5, type: 2}
+--- !u!114 &142368191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142368183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
+  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
+  height: 1
 --- !u!1 &511765757
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +476,7 @@ GameObject:
   - component: {fileID: 1417733986}
   - component: {fileID: 1417733987}
   - component: {fileID: 1417733988}
+  - component: {fileID: 1417733989}
   m_Layer: 0
   m_Name: modifierCube
   m_TagString: Untagged
@@ -627,6 +643,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::modifierMonoBehaviour
   modifierDefinition: {fileID: 11400000, guid: a7fdb1bcf0f82244bb172bf73a86d34d, type: 2}
+--- !u!114 &1417733989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417733983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 5f3d4c5a93e8e0247b2e7e8ff88638f5, type: 2}
 --- !u!1 &1814902187
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,8 +668,9 @@ GameObject:
   - component: {fileID: 1814902188}
   - component: {fileID: 1814902191}
   - component: {fileID: 1814902190}
-  - component: {fileID: 1814902192}
   - component: {fileID: 1814902193}
+  - component: {fileID: 1814902194}
+  - component: {fileID: 1814902195}
   m_Layer: 0
   m_Name: receiver
   m_TagString: Untagged
@@ -794,19 +824,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1814902192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814902187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModifierManager
-  statusMatrix: {fileID: 11400000, guid: 5f3d4c5a93e8e0247b2e7e8ff88638f5, type: 2}
 --- !u!114 &1814902193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +836,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412b3ebcdaf99aa45baa147236b0bab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::receiverMonoBehaviour
+--- !u!114 &1814902194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814902187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 5f3d4c5a93e8e0247b2e7e8ff88638f5, type: 2}
+--- !u!114 &1814902195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814902187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
+  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
+  height: 1
 --- !u!1 &2122567754
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +876,7 @@ GameObject:
   - component: {fileID: 2122567757}
   - component: {fileID: 2122567758}
   - component: {fileID: 2122567760}
-  - component: {fileID: 2122567759}
+  - component: {fileID: 2122567761}
   m_Layer: 0
   m_Name: damageCube
   m_TagString: Untagged
@@ -986,19 +1030,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2122567759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122567754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModifierManager
-  statusMatrix: {fileID: 11400000, guid: 2fe5ed5fdf8fafd479ce539606c1be14, type: 2}
 --- !u!114 &2122567760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1042,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502a2a045d2ba54fbcf4b02d1554810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::damageMonoBehaviour
+--- !u!114 &2122567761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122567754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 2fe5ed5fdf8fafd479ce539606c1be14, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5183596182603195368}
   - component: {fileID: 7804636967463634504}
   - component: {fileID: 4869649178132500266}
-  - component: {fileID: 851310113697978834}
+  - component: {fileID: 3827795403457881235}
   m_Layer: 0
   m_Name: SpeedBuffItem
   m_TagString: Untagged
@@ -129,7 +129,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &851310113697978834
+--- !u!114 &3827795403457881235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6670506158152208609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e4fc71f5b3b19f48b30ea6d01a25f2b, type: 3}
+  m_Script: {fileID: 11500000, guid: ea61b7d30b1f46b48b7533fa0cac1190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModifierItem
-  modifierDefinition: {fileID: 11400000, guid: b2b34657ade1f5043b672509f8ee3a5e, type: 2}
+  modifierDefinition: {fileID: 11400000, guid: 96ced7da3a56e6c4f9e3feaddb3e5561, type: 2}

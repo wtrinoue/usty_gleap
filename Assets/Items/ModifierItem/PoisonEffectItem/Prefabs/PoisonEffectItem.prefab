@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7153512811520420402}
   - component: {fileID: 8990263468216963075}
   - component: {fileID: 3317469117051257641}
-  - component: {fileID: 1462642443856620555}
+  - component: {fileID: 2171598212658755795}
   m_Layer: 0
   m_Name: PoisonEffectItem
   m_TagString: Untagged
@@ -129,7 +129,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &1462642443856620555
+--- !u!114 &2171598212658755795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8901826119068415504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e4fc71f5b3b19f48b30ea6d01a25f2b, type: 3}
+  m_Script: {fileID: 11500000, guid: ea61b7d30b1f46b48b7533fa0cac1190, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PoisonEffectItemBehaviour
-  modifierDefinition: {fileID: 11400000, guid: 732821369d77b3049a34154e71fbec32, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::ModifierItem
+  modifierDefinition: {fileID: 11400000, guid: 2ff554b7eca84254695ed2de6bb07b74, type: 2}

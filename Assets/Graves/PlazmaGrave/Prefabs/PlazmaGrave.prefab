@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3092423030798216249}
   - component: {fileID: 475544190454031319}
   - component: {fileID: 784465765187668276}
-  - component: {fileID: -5231700847954181791}
+  - component: {fileID: 8354420407679308830}
   m_Layer: 0
   m_Name: PlazmaGrave
   m_TagString: Untagged
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5231700847954181791
+--- !u!114 &8354420407679308830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,10 +176,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2541214235751769276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 71b8f84a1fcfaf74c95eb348c2cf0d8e, type: 2}
+  statusMatrix: {fileID: 11400000, guid: 1602de6fbf1251c4e9c58869c96607a8, type: 2}
 --- !u!1001 &6592313021228804691
 PrefabInstance:
   m_ObjectHideFlags: 0

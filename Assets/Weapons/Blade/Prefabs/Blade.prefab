@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8884485533075528149}
   - component: {fileID: 8951308859001017632}
   - component: {fileID: 7948231859471517762}
-  - component: {fileID: 8351324868277382977}
+  - component: {fileID: 666137946540851007}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1c2b543f84cd74d94776683c55813d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BladeBehaviour
-  statusContainer: {fileID: 8351324868277382977}
+  statusContainer: {fileID: 666137946540851007}
   knockback: {fileID: 8884485533075528149}
 --- !u!60 &7948231859471517762
 PolygonCollider2D:
@@ -174,7 +174,7 @@ PolygonCollider2D:
       - {x: 1.9798689, y: -1.9819157}
       - {x: 2.130249, y: -1.2401121}
   m_UseDelaunayMesh: 0
---- !u!114 &8351324868277382977
+--- !u!114 &666137946540851007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,10 +183,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2659088587549610347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74bbf40a2bdc1d4a9e9f4295af36623, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 2712ef1b990b92046b47af1f925e4294, type: 2}
+  statusMatrix: {fileID: 11400000, guid: a8d196aca4fe9934090db60a3eb709a2, type: 2}
 --- !u!1 &6664515092349404436
 GameObject:
   m_ObjectHideFlags: 0

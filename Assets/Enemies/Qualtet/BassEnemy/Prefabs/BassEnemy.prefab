@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8555620021502423324}
   - component: {fileID: 355633691504884761}
   - component: {fileID: -6978429001898870680}
-  - component: {fileID: -6251962233049621919}
+  - component: {fileID: 1397273650263031173}
   m_Layer: 0
   m_Name: BassEnemy
   m_TagString: Enemy
@@ -188,7 +188,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6251962233049621919
+--- !u!114 &1397273650263031173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2632551601632496819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 331096daf33e7574fa945c4a30bbf022, type: 2}
+  statusMatrix: {fileID: 11400000, guid: 9ab6f957a88b54a46b7b648997f2359b, type: 2}

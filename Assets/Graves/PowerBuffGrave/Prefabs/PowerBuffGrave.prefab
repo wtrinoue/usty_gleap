@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 475544190454031319}
   - component: {fileID: 784465765187668276}
   - component: {fileID: 7750948624084748299}
-  - component: {fileID: 2296472437189440178}
   m_Layer: 0
   m_Name: PowerBuffGrave
   m_TagString: Untagged
@@ -180,17 +179,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gravePowerBuffController
   buffRadius: 2
-  modifierDefinition: {fileID: 11400000, guid: c89549a913271c24fac4efb8d22bb35a, type: 2}
---- !u!114 &2296472437189440178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2541214235751769276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 98328541c7bb1a44d94fd269e302d218, type: 2}
+  modifierDefinition: {fileID: 11400000, guid: 2ace4aab788aced4cab10101fe964295, type: 2}

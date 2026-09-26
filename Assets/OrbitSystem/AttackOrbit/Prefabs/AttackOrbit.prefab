@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5477872408511448088}
   - component: {fileID: 7791809887306708269}
   - component: {fileID: 2813723120047858998}
-  - component: {fileID: -4172644928006074121}
+  - component: {fileID: 51000646593201284}
   m_Layer: 0
   m_Name: AttackOrbit
   m_TagString: Untagged
@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941f480702be1814baecf47552657db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackOrbitBehaviour
-  statusContainer: {fileID: -4172644928006074121}
---- !u!114 &-4172644928006074121
+  statusContainer: {fileID: 51000646593201284}
+--- !u!114 &51000646593201284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3706849120274916178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 1e001b52fc6eeaa4aaf54cf9b2d32c57, type: 2}
+  statusMatrix: {fileID: 11400000, guid: e61994ecb30a9794e8507963c18d79c4, type: 2}

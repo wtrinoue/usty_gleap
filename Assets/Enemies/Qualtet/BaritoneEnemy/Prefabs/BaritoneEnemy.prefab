@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8968827258935248908}
   - component: {fileID: 8100571852955738200}
   - component: {fileID: 3347150380055331424}
-  - component: {fileID: -6161317724258732530}
   - component: {fileID: 770202364362623640}
   - component: {fileID: -5874778582813467008}
+  - component: {fileID: 5983016609191085069}
   m_Layer: 0
   m_Name: BaritoneEnemy
   m_TagString: Enemy
@@ -140,19 +140,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-6161317724258732530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215849105629894277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2999dfd66654dc44384e2012515e6676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 11400000, guid: 9786d4fea99174c4e9b5074c9359dbdd, type: 2}
 --- !u!114 &770202364362623640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,3 +188,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5983016609191085069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215849105629894277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 11400000, guid: 7e148d19f7dd0ae4cb01c092b0635ed4, type: 2}
