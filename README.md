@@ -23,6 +23,10 @@
 開発計画スライド（Canva) : https://canva.link/et882xr8diyfgrq  
 素材役割分担ホワイトボード（Canva）: https://canva.link/fbwm8e977e32r6q
 
+# 使用アセットについて
+スライム：https://assetstore.unity.com/packages/2d/characters/slime-enemy-pixel-art-228568
+
+
 # 編集前に…
 隠しファイルをOnにして、「.git/info/exclude」ファイルにて、
  
