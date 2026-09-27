@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a264ff696acd9fc49a5820c4b476182b, type: 3}
   m_Name: CharacterRegister
   m_EditorClassIdentifier: Assembly-CSharp-Editor::CharacterRegister
-  objects: []
+  objects:
+  - category: 0
+    prefab: {fileID: 4556183081519159654, guid: 3b5fe5162ae2be04bb166006a72cf93d, type: 3}
+  - category: 0
+    prefab: {fileID: 7900997591495169756, guid: 8249030ac1c0ed44b8af7dc8c622483d, type: 3}
+  - category: 0
+    prefab: {fileID: 5008851019340195351, guid: 7effff179616ecb43b9f73b520796912, type: 3}
+  - category: 0
+    prefab: {fileID: 8234122525895729124, guid: 47b6e24c680fc3f4da364876186e7be5, type: 3}
+  - category: 1
+    prefab: {fileID: 6558522757721454298, guid: 0eb2f621be293e441a5f09c5d38a8787, type: 3}
+  - category: 1
+    prefab: {fileID: 8841803908190589628, guid: eaa4203b8c6a28a429b5d32e475980cd, type: 3}
+  - category: 1
+    prefab: {fileID: 3134434376888122359, guid: f08c1da34861133448517d9e151698be, type: 3}
+  - category: 2
+    prefab: {fileID: 3758572954330849413, guid: e71f62f077bcdf4489381aff311b08ea, type: 3}
+  - category: 2
+    prefab: {fileID: 6248876079543078588, guid: 03d3557102828854d9171cf507f04a7d, type: 3}
