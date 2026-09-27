@@ -147,15 +147,19 @@ public class CharacterGenerator : EditorWindow
     /// <summary>
     /// オブジェクトひとつの正方形パネルを描画する
     /// </summary>
+    /// <summary>
+    /// オブジェクトひとつの正方形パネルを描画する
+    /// </summary>
     private void DrawObjectPanel(GameObject obj, float size)
     {
         Rect panelRect = GUILayoutUtility.GetRect(size, size, GUILayout.Width(size), GUILayout.Height(size));
 
         GUI.Box(panelRect, GUIContent.none);
 
-        // Sprite 取得
+        // Sprite と SpriteRenderer の Color を取得
         SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
         Sprite sprite = spriteRenderer != null ? spriteRenderer.sprite : null;
+        Color spriteColor = spriteRenderer != null ? spriteRenderer.color : Color.white;
 
         Rect spriteRect = new Rect(
             panelRect.x + 10,
@@ -196,7 +200,13 @@ public class CharacterGenerator : EditorWindow
                 height
             );
 
+            // GUI.color に SpriteRenderer の Color を設定して描画
+            Color savedColor = GUI.color;
+            GUI.color = spriteColor;
+
             GUI.DrawTextureWithTexCoords(drawRect, texture, uv);
+
+            GUI.color = savedColor; // 元のGUIカラーに戻す
         }
 
         // オブジェクト名
