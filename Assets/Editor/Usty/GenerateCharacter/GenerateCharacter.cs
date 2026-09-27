@@ -1,11 +1,15 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 
 public class CharacterGenerator : EditorWindow
 {
-    private List<GameObject> registeredObjects = new();
+    private CharacterRegister characterRegister;
+    private Vector2 scrollPosition;
 
     [MenuItem("Usty/CharacterGenerator")]
     private static void Open()
@@ -16,6 +20,7 @@ public class CharacterGenerator : EditorWindow
     private void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
+        LoadCharacterRegister();
     }
 
     private void OnDisable()
@@ -23,83 +28,140 @@ public class CharacterGenerator : EditorWindow
         SceneView.duringSceneGui -= OnSceneGUI;
     }
 
-    private void OnGUI()
+    /// <summary>
+    /// エディタースクリプトと同じフォルダにある CharacterRegister アセットをロードする
+    /// </summary>
+    private void LoadCharacterRegister()
     {
-        GUILayout.Label(
-            "登録オブジェクト",
-            EditorStyles.boldLabel
-        );
+        // 自身のスクリプトのアセットパスを取得
+        MonoScript script = MonoScript.FromScriptableObject(this);
+        string scriptPath = AssetDatabase.GetAssetPath(script);
+        string directoryPath = Path.GetDirectoryName(scriptPath);
 
-        GUILayout.Space(5);
+        // 同一フォルダから CharacterRegister を検索
+        string[] guids = AssetDatabase.FindAssets("t:CharacterRegister", new[] { directoryPath });
 
-        // 登録されているオブジェクトを表示
-        for (int i = 0; i < registeredObjects.Count; i++)
+        if (guids.Length > 0)
         {
-            DrawObject(i);
+            string assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
+            characterRegister = AssetDatabase.LoadAssetAtPath<CharacterRegister>(assetPath);
         }
-
-        GUILayout.Space(10);
-
-        // オブジェクト追加
-        if (GUILayout.Button("＋ オブジェクトを追加"))
+        else
         {
-            registeredObjects.Add(null);
+            // 同一フォルダに見つからない場合はプロジェクト全体から検索
+            guids = AssetDatabase.FindAssets("t:CharacterRegister");
+            if (guids.Length > 0)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
+                characterRegister = AssetDatabase.LoadAssetAtPath<CharacterRegister>(assetPath);
+            }
         }
     }
 
-    private void DrawObject(int index)
+    private void OnGUI()
     {
-        GameObject obj = registeredObjects[index];
+        // アセットがアサインされていない場合のフォールバック（手動アサイン枠）
+        characterRegister = (CharacterRegister)EditorGUILayout.ObjectField(
+            "Character Register",
+            characterRegister,
+            typeof(CharacterRegister),
+            false
+        );
 
-        // オブジェクト未登録の場合
-        if (obj == null)
+        if (characterRegister == null)
         {
-            EditorGUILayout.BeginHorizontal();
-
-            registeredObjects[index] =
-                (GameObject)EditorGUILayout.ObjectField(
-                    "Prefab",
-                    null,
-                    typeof(GameObject),
-                    false
-                );
-
-            if (GUILayout.Button("×", GUILayout.Width(25)))
-            {
-                registeredObjects.RemoveAt(index);
-            }
-
-            EditorGUILayout.EndHorizontal();
-
+            EditorGUILayout.HelpBox("CharacterRegister アセットが見つかりません。同一フォルダに配置するか直接セットしてください。", MessageType.Warning);
             return;
         }
 
-        // 正方形のパネル
-        Rect panelRect = GUILayoutUtility.GetRect(
-            100,
-            100
-        );
+        EditorGUILayout.Space(10);
 
-        GUI.Box(
-            panelRect,
-            GUIContent.none
-        );
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-        // Sprite取得
-        SpriteRenderer spriteRenderer =
-            obj.GetComponent<SpriteRenderer>();
+        // 定義されている UstyCategory の列挙値を順に処理
+        foreach (UstyCategory category in Enum.GetValues(typeof(UstyCategory)))
+        {
+            DrawCategoryGroup(category);
+        }
 
-        Sprite sprite =
-            spriteRenderer != null
-                ? spriteRenderer.sprite
-                : null;
+        EditorGUILayout.EndScrollView();
+    }
 
-        // Sprite表示領域
+    /// <summary>
+    /// カテゴリごとにヘッダーと登録アイテムのグリッドを描画する
+    /// </summary>
+    private void DrawCategoryGroup(UstyCategory category)
+    {
+        if (characterRegister.objects == null) return;
+
+        // 該当カテゴリのデータを抽出（Prefabが指定されているもののみ）
+        var items = characterRegister.objects
+            .Where(x => x != null && x.category == category && x.prefab != null)
+            .ToList();
+
+        // カテゴリラベル
+        EditorGUILayout.LabelField(category.ToString(), EditorStyles.boldLabel);
+        Rect lineRect = EditorGUILayout.GetControlRect(false, 1);
+        EditorGUI.DrawRect(lineRect, new Color(0.5f, 0.5f, 0.5f, 0.5f)); // 区切り線
+        EditorGUILayout.Space(5);
+
+        if (items.Count == 0)
+        {
+            EditorGUILayout.LabelField("（登録なし）", EditorStyles.miniLabel);
+            EditorGUILayout.Space(10);
+            return;
+        }
+
+        // ウィンドウ幅に応じた折り返し表示の計算
+        float tileSize = 100f;
+        float spacing = 8f;
+        float currentWidth = EditorGUIUtility.currentViewWidth - 30f; // 余白調整
+        int columns = Mathf.Max(1, Mathf.FloorToInt((currentWidth + spacing) / (tileSize + spacing)));
+
+        EditorGUILayout.BeginVertical();
+        for (int i = 0; i < items.Count; i += columns)
+        {
+            EditorGUILayout.BeginHorizontal();
+            for (int j = 0; j < columns; j++)
+            {
+                int index = i + j;
+                if (index < items.Count)
+                {
+                    DrawObjectPanel(items[index].prefab, tileSize);
+                    GUILayout.Space(spacing);
+                }
+                else
+                {
+                    // グリッドの位置合わせ用ダミー
+                    GUILayout.FlexibleSpace();
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            GUILayout.Space(spacing);
+        }
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.Space(15);
+    }
+
+    /// <summary>
+    /// オブジェクトひとつの正方形パネルを描画する
+    /// </summary>
+    private void DrawObjectPanel(GameObject obj, float size)
+    {
+        Rect panelRect = GUILayoutUtility.GetRect(size, size, GUILayout.Width(size), GUILayout.Height(size));
+
+        GUI.Box(panelRect, GUIContent.none);
+
+        // Sprite 取得
+        SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+        Sprite sprite = spriteRenderer != null ? spriteRenderer.sprite : null;
+
         Rect spriteRect = new Rect(
             panelRect.x + 10,
             panelRect.y + 10,
             panelRect.width - 20,
-            70
+            65
         );
 
         if (sprite != null)
@@ -114,11 +176,7 @@ public class CharacterGenerator : EditorWindow
                 textureRect.height / texture.height
             );
 
-            // Spriteの縦横比
-            float aspect =
-                textureRect.width / textureRect.height;
-
-            // 表示領域
+            float aspect = textureRect.width / textureRect.height;
             float maxWidth = spriteRect.width;
             float maxHeight = spriteRect.height;
 
@@ -131,7 +189,6 @@ public class CharacterGenerator : EditorWindow
                 width = height * aspect;
             }
 
-            // 中央寄せ
             Rect drawRect = new Rect(
                 spriteRect.x + (spriteRect.width - width) / 2,
                 spriteRect.y + (spriteRect.height - height) / 2,
@@ -139,19 +196,15 @@ public class CharacterGenerator : EditorWindow
                 height
             );
 
-            GUI.DrawTextureWithTexCoords(
-                drawRect,
-                texture,
-                uv
-            );
+            GUI.DrawTextureWithTexCoords(drawRect, texture, uv);
         }
 
         // オブジェクト名
         Rect nameRect = new Rect(
-            panelRect.x + 5,
-            panelRect.y + 80,
-            panelRect.width - 10,
-            15
+            panelRect.x + 2,
+            panelRect.y + 78,
+            panelRect.width - 4,
+            18
         );
 
         GUI.Label(
@@ -159,24 +212,17 @@ public class CharacterGenerator : EditorWindow
             obj.name,
             new GUIStyle(EditorStyles.centeredGreyMiniLabel)
             {
-                alignment = TextAnchor.MiddleCenter
+                alignment = TextAnchor.MiddleCenter,
+                wordWrap = true
             }
         );
 
-        // ドラッグ開始
-        if (Event.current.type == EventType.MouseDown &&
-            panelRect.Contains(Event.current.mousePosition))
+        // ドラッグ開始の検出
+        if (Event.current.type == EventType.MouseDown && panelRect.Contains(Event.current.mousePosition))
         {
             DragAndDrop.PrepareStartDrag();
-
-            DragAndDrop.objectReferences =
-                new Object[]
-                {
-                obj
-                };
-
+            DragAndDrop.objectReferences = new UnityEngine.Object[] { obj };
             DragAndDrop.StartDrag(obj.name);
-
             Event.current.Use();
         }
     }
@@ -185,8 +231,7 @@ public class CharacterGenerator : EditorWindow
     {
         Event e = Event.current;
 
-        if (e.type != EventType.DragUpdated &&
-            e.type != EventType.DragPerform)
+        if (e.type != EventType.DragUpdated && e.type != EventType.DragPerform)
         {
             return;
         }
@@ -194,53 +239,36 @@ public class CharacterGenerator : EditorWindow
         if (DragAndDrop.objectReferences.Length == 0)
             return;
 
-        GameObject prefab =
-            DragAndDrop.objectReferences[0] as GameObject;
+        GameObject prefab = DragAndDrop.objectReferences[0] as GameObject;
 
         if (prefab == null)
             return;
 
-        DragAndDrop.visualMode =
-            DragAndDropVisualMode.Copy;
+        DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
 
         if (e.type != EventType.DragPerform)
             return;
 
         DragAndDrop.AcceptDrag();
 
-        // Scene上のマウス位置
-        Ray ray =
-            HandleUtility.GUIPointToWorldRay(
-                e.mousePosition
-            );
-
-        // XY平面
-        Plane plane =
-            new Plane(
-                Vector3.forward,
-                Vector3.zero
-            );
+        // Scene上のマウス位置（XY平面）
+        Ray ray = HandleUtility.GUIPointToWorldRay(e.mousePosition);
+        Plane plane = new Plane(Vector3.forward, Vector3.zero);
 
         if (!plane.Raycast(ray, out float distance))
             return;
 
-        Vector3 position =
-            ray.GetPoint(distance);
+        Vector3 position = ray.GetPoint(distance);
 
         // Prefab生成
-        GameObject instance =
-            (GameObject)PrefabUtility.InstantiatePrefab(
-                prefab,
-                EditorSceneManager.GetActiveScene()
-            );
+        GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(
+            prefab,
+            EditorSceneManager.GetActiveScene()
+        );
 
         instance.transform.position = position;
 
-        Undo.RegisterCreatedObjectUndo(
-            instance,
-            "Place Prefab"
-        );
-
+        Undo.RegisterCreatedObjectUndo(instance, "Place Prefab");
         Selection.activeGameObject = instance;
 
         e.Use();
