@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-public class UstyWindow : EditorWindow
+public class CharacterGenerator : EditorWindow
 {
     private List<GameObject> registeredObjects = new();
 
-    [MenuItem("Usty/Usty Window")]
+    [MenuItem("Usty/CharacterGenerator")]
     private static void Open()
     {
-        GetWindow<UstyWindow>("Usty");
+        GetWindow<CharacterGenerator>("Usty");
     }
 
     private void OnEnable()
