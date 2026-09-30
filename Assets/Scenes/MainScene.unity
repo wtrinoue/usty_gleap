@@ -589,25 +589,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1053375855 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3582109014948741588, guid: 3e8d0fa12e987d6499120557e3bce735, type: 3}
-  m_PrefabInstance: {fileID: 2069698880}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1053375869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053375855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
-  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
-  height: 1
 --- !u!1 &1159478108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,10 +1467,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3582109014948741588, guid: 3e8d0fa12e987d6499120557e3bce735, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1053375869}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e8d0fa12e987d6499120557e3bce735, type: 3}
 --- !u!1 &2074236993
 GameObject:

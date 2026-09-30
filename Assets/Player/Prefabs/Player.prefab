@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 5216692051697576548}
   - component: {fileID: 972227135291899661}
   - component: {fileID: 1919707269781141894}
+  - component: {fileID: 2933560650442198556}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -284,3 +285,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
   statusMatrix: {fileID: 11400000, guid: a8d196aca4fe9934090db60a3eb709a2, type: 2}
+--- !u!114 &2933560650442198556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582109014948741588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e3e2d12ed1cc469671f6390156487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HpBarGenerator
+  hpBarPrefab: {fileID: 5636870838748718360, guid: 7701bddf307de254da248611de621f8e, type: 3}
+  height: 1

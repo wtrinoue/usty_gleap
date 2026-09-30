@@ -16,15 +16,18 @@ public class HPBar : MonoBehaviour
     private void Update()
     {
         // Debug.Log("まだ生きています");
-        if (_statusContainer == null || _hpSlider == null) return;
+        if (_statusContainer == null || _hpSlider == null)
+        {
+            DestroyBar();
+            return;
+        }
         if (IsDestroyed) return;
 
         float currentHP = _statusContainer.GetStatus().Get(StatusCategory.HP, StatusMethod.Base);
         float maxHP = _statusContainer.statusMatrix.Get(StatusCategory.HP, StatusMethod.Base);
         if (currentHP <= 0)
         {
-            Destroy(gameObject);
-            IsDestroyed = true;
+            DestroyBar();
         }
 
         // MaxHPが0の場合は0を設定
@@ -49,6 +52,12 @@ public class HPBar : MonoBehaviour
     public void Initialize()
     {
         _statusContainer = target.GetComponentInParent<StatusContainer>(); //親コンポーネントのStatusContainerを取得
+    }
+
+    private void DestroyBar()
+    {
+        Destroy(gameObject);
+        IsDestroyed = true;
     }
 
 }
