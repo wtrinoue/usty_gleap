@@ -2,17 +2,12 @@ using UnityEngine;
 
 public class EnemyAttackOrbitBehaviour : MonoBehaviour
 {
-    private StatusActionHolder statusActionHolder;
-    private TargetStatusAction attackAction;
+
+    public StatusContainer statusContainer;
     private Knockback knockback;
 
     void Awake()
     {
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        if (statusActionHolder != null)
-        {
-            attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
-        }
         knockback = GetComponent<Knockback>();
     }
 
@@ -30,10 +25,13 @@ public class EnemyAttackOrbitBehaviour : MonoBehaviour
     {
         if (!target.CompareTag("Player")) return;
 
-        if (attackAction != null)
-        {
-            attackAction.Execute(this.gameObject, target);
-        }
+        StatusContainer playerSC = target.GetComponent<StatusContainer>();
+
+        if (playerSC == null) return;
+
+        DamageToken dt = new();
+        dt.ExtractStatus(statusContainer.GetStatus());
+        playerSC.ApplyOneTimeToken(dt);
 
         if (knockback != null)
         {

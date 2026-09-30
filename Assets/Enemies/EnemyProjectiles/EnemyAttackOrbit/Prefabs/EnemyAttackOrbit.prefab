@@ -11,13 +11,11 @@ GameObject:
   - component: {fileID: 1891628272920815362}
   - component: {fileID: 3305441610852617404}
   - component: {fileID: 5313139272447574470}
-  - component: {fileID: 8624259332657314766}
-  - component: {fileID: 6699097052705580911}
-  - component: {fileID: 2698978160332636605}
   - component: {fileID: 2663032379627482297}
   - component: {fileID: 390063073942640309}
   - component: {fileID: 1243094020550739737}
   - component: {fileID: 2789515251480006538}
+  - component: {fileID: -3932465755253435508}
   m_Layer: 0
   m_Name: EnemyAttackOrbit
   m_TagString: Untagged
@@ -96,48 +94,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8624259332657314766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4510539143776692414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da72d18145b031d4ca0e2cdbc6c150fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusActionHolder
-  selfActions: []
-  targetActions:
-  - {fileID: 11400000, guid: cdf24047eddca71449ac910d29fd901c, type: 2}
-  generateActions: []
---- !u!114 &6699097052705580911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4510539143776692414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4176f97495edd43969deae8912f0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusHolder
-  baseStatusSO: {fileID: 11400000, guid: 340b9afb440127340b64411d0418914f, type: 2}
-  buffStatusSO: {fileID: 11400000, guid: af802ac9b9975a54983834b70fb118a4, type: 2}
---- !u!114 &2698978160332636605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4510539143776692414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af11bec1366ffe74bb247caca431c16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!114 &2663032379627482297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,3 +182,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11db4487ad2c0b49b373c4631f35648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackOrbitBehaviour
+  statusContainer: {fileID: -3932465755253435508}
+--- !u!114 &-3932465755253435508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510539143776692414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
+  statusMatrix: {fileID: 0}
