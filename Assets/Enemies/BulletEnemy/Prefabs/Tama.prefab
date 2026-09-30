@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBulletBehaviour
   lifeTimeSeconds: 5
+  statusContainer: {fileID: 1120041053624649935}
 --- !u!50 &6409338804917791157
 Rigidbody2D:
   serializedVersion: 5

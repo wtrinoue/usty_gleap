@@ -4,7 +4,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float lifeTimeSeconds = 5f;
 
-    private StatusContainer statusContainer;
+    public StatusContainer statusContainer;
     private Rigidbody2D rb;
     private bool isDestroyed;
 
