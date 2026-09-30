@@ -166,7 +166,7 @@ static class StatusValidation
 
 
         float minLimit = 0.01f;
-        float baseLimit = 1.0f;
+        float baseLimit = 0.0f;
         float baseAndAdd = 0f;
         foreach (SC sc in Enum.GetValues(typeof(SC)))
         {

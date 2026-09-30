@@ -52,6 +52,9 @@ public class DamageToken : StatusToken
     {
         float targetDefense = modified.Calculate(StatusCategory.Defense);
         float damage = sourceAttack - targetDefense;
+        UnityEngine.Debug.Log("attack = " + sourceAttack);
+        UnityEngine.Debug.Log("defence = " + targetDefense);
+        UnityEngine.Debug.Log("damage = " + damage);
         if (damage < 0) { damage = 0; }
         target.Add(StatusCategory.HP, StatusMethod.Base, -damage);
     }
