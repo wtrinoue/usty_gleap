@@ -9,23 +9,20 @@ public class FollowEnemyAttack : MonoBehaviour
     [Header("Player tag")]
     [SerializeField] private string playerTag = "Player";
 
-    private StatusActionHolder statusActionHolder;
-    private TargetStatusAction attackAction;
-
-    private void Awake()
-    {
-        statusActionHolder = GetComponent<StatusActionHolder>();
-        if (statusActionHolder != null)
-        {
-            attackAction = statusActionHolder.GetTargetStatusActionFromIndex(0);
-        }
-    }
+    public StatusContainer statusContainer;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (attackAction == null) return;
         if (!collision.gameObject.CompareTag(playerTag)) return;
 
-        attackAction.Execute(gameObject, collision.gameObject);
+        StatusContainer playerSC = collision.gameObject.GetComponent<StatusContainer>();
+
+        if (playerSC == null) return;
+
+        Debug.Log("FollowEnemyからPlayerに攻撃をしました。");
+
+        DamageToken dt = new();
+        dt.ExtractStatus(statusContainer.GetStatus());
+        playerSC.ApplyOneTimeToken(dt);
     }
 }

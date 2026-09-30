@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4027473756312987190}
   - component: {fileID: 7287508785055235449}
   - component: {fileID: 1545014821931648460}
+  - component: {fileID: 8686643694279592948}
   m_Layer: 0
   m_Name: FollowEnemy
   m_TagString: Enemy
@@ -292,3 +293,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
   statusMatrix: {fileID: 11400000, guid: 8a9aff11a34320643a84e1b8460868b3, type: 2}
+--- !u!114 &8686643694279592948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900997591495169756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8836f9a674423b4c824d7a8fb066356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowEnemyAttack
+  playerTag: Player
+  statusContainer: {fileID: 1545014821931648460}

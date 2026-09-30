@@ -195,4 +195,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011afc0785335a1458ad313b53f13719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusContainer
-  statusMatrix: {fileID: 0}
+  statusMatrix: {fileID: 11400000, guid: 07b839289b84a3e4cacdb59e62d4dbac, type: 2}
