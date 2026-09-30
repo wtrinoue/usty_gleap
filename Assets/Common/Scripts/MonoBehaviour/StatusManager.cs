@@ -4,7 +4,7 @@ using System.Linq;
 
 [RequireComponent(typeof(StatusHolder))]
 [RequireComponent(typeof(StatusActionHolder))]
-public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
+public class StatusManager : MonoBehaviour, IHasStatusManager, ICoroutineUpdatable
 {
     // ===== StatusHolderの参照 =====
     private StatusHolder statusHolder;
@@ -47,7 +47,7 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
     // Update is called once per frame
     public void ManagedCoroutine(float interval)
     {
-        if(isDestroyed)return;
+        if (isDestroyed) return;
         UpdateBuffs(interval);
         RecalculateBuffStatus();
         UpdateEffects(interval);
@@ -57,7 +57,7 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
     //バフの処理
     public void UpdateBuffs(float deltaTime)
     {
-        if(buffs == null)return;
+        if (buffs == null) return;
         for (int i = buffs.Count - 1; i >= 0; i--)
         {
             Buff buff = buffs[i];
@@ -74,7 +74,7 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
 
     public void RecalculateBuffStatus()
     {
-        if(temporaryBuffStatus == null)return;
+        if (temporaryBuffStatus == null) return;
         // ベースステータスをコピー
         temporaryBuffStatus.CopyFrom(BuffStatus);
 
@@ -100,7 +100,7 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
     public void AddBuff(Buff buff)
     {
         // buffsがnullの場合は初期化されていないため、スキップ
-        if(buffs == null){return;}
+        if (buffs == null) { return; }
 
         // buffを渡したオブジェクトとassetの種類が同じであれば追加しない。
         bool alreadyExists = buffs.Any(b =>
@@ -116,7 +116,7 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
     //エフェクトの処理
     public void UpdateEffects(float deltaTime)
     {
-        if(effects == null)return;
+        if (effects == null) return;
         for (int i = effects.Count - 1; i >= 0; i--)
         {
             Effect effect = effects[i];
@@ -133,7 +133,7 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
 
     public void TriggerEffects()
     {
-        if(effects == null)return;
+        if (effects == null) return;
         if (effects.Count == 0) return;
 
         foreach (Effect effect in effects)
@@ -149,14 +149,14 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
     }
     public void AddEffect(Effect effect)
     {
-        if(effects == null){return;}
+        if (effects == null) { return; }
         // effectを渡したオブジェクトとassetの種類が同じであれば追加しない。
         bool alreadyExists = effects.Any(e =>
             e.ObjectId == effect.ObjectId &&
             e.name == effect.name
         );
 
-        if(alreadyExists) return;
+        if (alreadyExists) return;
 
         effects.Add(effect);
         Debug.Log("追加しました");
@@ -179,17 +179,17 @@ public class StatusManager : MonoBehaviour,IHasStatusManager,ICoroutineUpdatable
         float addAttack = temporaryBuffStatus.AddAttack;
         float multipleAttack = temporaryBuffStatus.MultipleAttack;
 
-        Debug.Log("あなたの攻撃力は: "+(baseAttack + addAttack)*multipleAttack);
-        return (baseAttack + addAttack)*multipleAttack;
+        // Debug.Log("あなたの攻撃力は: "+(baseAttack + addAttack)*multipleAttack);
+        return (baseAttack + addAttack) * multipleAttack;
     }
 
     public float GetSpeed()
     {
-        if(this == null)return 0f;
+        if (this == null) return 0f;
         float baseSpeed = baseStatus.BaseSpeed;
         float addSpeed = temporaryBuffStatus.AddSpeed;
         float multipleSpeed = temporaryBuffStatus.MultipleSpeed;
-        return (baseSpeed + addSpeed)*multipleSpeed;
+        return (baseSpeed + addSpeed) * multipleSpeed;
         //※クリックが早すぎるとnull参照になる恐れがある。
     }
 }
