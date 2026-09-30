@@ -183,7 +183,7 @@ MonoBehaviour:
   stopDistance: 1
   bulletPrefab: {fileID: 5882308550730602386, guid: 6b63dac801bbb9e41a49331686173ac6, type: 3}
   shotInterval: 1
-  fireDistance: 5
+  fireDistance: 15
   spawnOffset: 0.5
 --- !u!114 &630462144301753568
 MonoBehaviour:

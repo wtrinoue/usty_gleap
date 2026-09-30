@@ -60,6 +60,14 @@ public class CharacterGenerator : EditorWindow
 
     private void OnGUI()
     {
+        // 使い方の説明表示
+        EditorGUILayout.HelpBox(
+            "【使い方】\n" +
+            "・ドラッグ＆ドロップ：Sceneビューへ配置\n" +
+            "・ダブルクリック：該当Prefabを選択してInspectorで編集",
+            MessageType.Info
+        );
+        EditorGUILayout.Space(5);
         // アセットがアサインされていない場合のフォールバック（手動アサイン枠）
         characterRegister = (CharacterRegister)EditorGUILayout.ObjectField(
             "Character Register",
@@ -227,13 +235,25 @@ public class CharacterGenerator : EditorWindow
             }
         );
 
-        // ドラッグ開始の検出
-        if (Event.current.type == EventType.MouseDown && panelRect.Contains(Event.current.mousePosition))
+        // イベントの判定処理
+        Event currentEvent = Event.current;
+        if (panelRect.Contains(currentEvent.mousePosition))
         {
-            DragAndDrop.PrepareStartDrag();
-            DragAndDrop.objectReferences = new UnityEngine.Object[] { obj };
-            DragAndDrop.StartDrag(obj.name);
-            Event.current.Use();
+            // 1. ダブルクリック時の処理（アセットをInspectorで開く / Projectウィンドウでハイライト）
+            if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0 && currentEvent.clickCount >= 2)
+            {
+                Selection.activeObject = obj;              // Inspectorで表示
+                EditorGUIUtility.PingObject(obj);         // Projectウィンドウで強調（位置をアピール）
+                currentEvent.Use();
+            }
+            // 2. ドラッグ開始の検出
+            else if (currentEvent.type == EventType.MouseDrag)
+            {
+                DragAndDrop.PrepareStartDrag();
+                DragAndDrop.objectReferences = new UnityEngine.Object[] { obj };
+                DragAndDrop.StartDrag(obj.name);
+                currentEvent.Use();
+            }
         }
     }
 

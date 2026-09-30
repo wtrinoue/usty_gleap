@@ -32,6 +32,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
         if (collision.CompareTag("Player") &&
             collision.TryGetComponent<StatusContainer>(out var hasSC))
         {
+            Debug.Log("Playerに当たりました！");
             DamageToken damageToken = new DamageToken();
             damageToken.ExtractStatus(statusContainer.GetStatus());
             hasSC.ApplyOneTimeToken(damageToken);
