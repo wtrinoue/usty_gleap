@@ -15,4 +15,7 @@ MonoBehaviour:
   type: 0
   duration: 5
   interval: 0
-  modifiers: []
+  modifiers:
+  - category: 4
+    method: 2
+    value: -10
