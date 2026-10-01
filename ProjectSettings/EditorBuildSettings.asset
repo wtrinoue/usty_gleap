@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TitleScene.unity
+    path: Assets/Members/Otsuka/TitleScene.unity
     guid: 24f871752a4a99048b02baad40f8747f
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
