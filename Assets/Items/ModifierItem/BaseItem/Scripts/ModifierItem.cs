@@ -16,7 +16,7 @@ public class ModifierItem : MonoBehaviour
 
         // 例：ステータスアクションを適用
         if (modifierDefinition == null) return;
-        StatusContainer playerSC = GetComponent<StatusContainer>();
+        StatusContainer playerSC = other.gameObject.GetComponent<StatusContainer>();
         playerSC.AddModifier(new Modifier(modifierDefinition, gameObject));
         Destroy(gameObject);
     }
