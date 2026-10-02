@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e78930b782f4de4aabafb447ff7c23b, type: 3}
-  m_Name: PlayerStatusMatrix
+  m_Name: MiddleMatryoshkaStatusMatrix
   m_EditorClassIdentifier: Assembly-CSharp::StatusMatrix
   values:
-  - 10
+  - 3
   - 0
   - 0
   - 1
@@ -25,6 +25,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 5
+  - 2
   - 0
   - 0

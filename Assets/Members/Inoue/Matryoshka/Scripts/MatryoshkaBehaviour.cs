@@ -14,7 +14,10 @@ public class MatryoshkaBehaviour : MonoBehaviour
         DeadToken deadToken = new();
         deadToken.SetAction(() =>
         {
-            Instantiate(childPrefab, transform.position, Quaternion.identity);
+            if (childPrefab != null)
+            {
+                Instantiate(childPrefab, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         });
         statusContainer.ApplyEternalToken(deadToken);
