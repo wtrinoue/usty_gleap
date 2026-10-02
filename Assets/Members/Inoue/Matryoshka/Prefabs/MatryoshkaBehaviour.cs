@@ -3,14 +3,21 @@ using System.Collections;
 
 public class MatryoshkaBehaviour : MonoBehaviour
 {
-    private Transform playerTransform;
     public StatusContainer statusContainer;
+    public GameObject childPrefab;
+    private Transform playerTransform;
     private bool isAttacking = false;
     private StatusContainer playerSC;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        DeadToken deadToken = new();
+        deadToken.SetAction(() =>
+        {
+            Instantiate(childPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        });
+        statusContainer.ApplyEternalToken(deadToken);
     }
 
     // Update is called once per frame
@@ -51,10 +58,10 @@ public class MatryoshkaBehaviour : MonoBehaviour
         while (isAttacking && playerSC != null)
         {
             // Perform attack logic here
-            yield return new WaitForSeconds(1f); // Adjust the interval as needed
             DamageToken dt = new();
             dt.ExtractStatus(statusContainer.GetStatus());
             playerSC.ApplyOneTimeToken(dt);
+            yield return new WaitForSeconds(1f); // Adjust the interval as needed
         }
     }
 }
