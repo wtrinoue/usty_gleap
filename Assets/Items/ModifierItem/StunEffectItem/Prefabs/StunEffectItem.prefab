@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2859585976833128864}
   - component: {fileID: 8326194840808801043}
-  - component: {fileID: 3036667667946392514}
   - component: {fileID: 3663828212143473440}
+  - component: {fileID: 4699470017344582454}
   m_Layer: 0
   m_Name: StunEffectItem
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -771174335665220881, guid: 969a8fee9d33b26449b2390461993167, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,8 +92,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &3036667667946392514
-CapsuleCollider2D:
+--- !u!114 &3663828212143473440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2988534786705742881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea61b7d30b1f46b48b7533fa0cac1190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModifierItem
+  modifierDefinition: {fileID: 11400000, guid: 9a713657d44ece64f94f2382dde12bb7, type: 2}
+--- !u!60 &4699470017344582454
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,18 +140,31 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
---- !u!114 &3663828212143473440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988534786705742881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea61b7d30b1f46b48b7533fa0cac1190, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModifierItem
-  modifierDefinition: {fileID: 11400000, guid: 9a713657d44ece64f94f2382dde12bb7, type: 2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.625, y: 3.8125}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.8125, y: 0.34375}
+      - {x: 1.8125, y: 0.90625}
+      - {x: 1.75, y: 1.09375}
+      - {x: 0.3125, y: 1.90625}
+      - {x: -0.3125, y: 1.90625}
+      - {x: -1.8125, y: 0.90625}
+      - {x: -1.8125, y: 0.34375}
+      - {x: -1.6875, y: 0.09375}
+      - {x: -1.25, y: -0.09375}
+      - {x: -1.25, y: -0.84375}
+      - {x: -1.625, y: -1.53125}
+      - {x: -1.1875, y: -1.90625}
+      - {x: -0.1875, y: -1.90625}
+      - {x: 0.375, y: -1.46875}
+      - {x: 0.5625, y: -1.03125}
+      - {x: 1.1875, y: -0.03125}
+  m_UseDelaunayMesh: 0
